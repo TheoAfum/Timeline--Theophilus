@@ -14,8 +14,8 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             padding: 40px 20px;
             min-height: 100vh;
         }
@@ -24,40 +24,67 @@
             max-width: 1600px;
             margin: 0 auto;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.05);
             overflow: hidden;
         }
         
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 40px;
+            padding: 50px 40px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="20" fill="white" opacity="0.05"/><circle cx="80" cy="80" r="30" fill="white" opacity="0.03"/></svg>');
+            opacity: 0.5;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
         }
         
         .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-            font-weight: 600;
+            font-size: 32px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
         
         .header p {
-            font-size: 14px;
+            font-size: 15px;
             opacity: 0.95;
+            font-weight: 300;
         }
         
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 15px;
-            padding: 30px;
-            background: #f8f9fa;
+            padding: 35px 30px;
+            background: linear-gradient(135deg, #f8f9fc 0%, #f3f4f9 100%);
             border-bottom: 1px solid #e9ecef;
         }
         
         .info-card {
             text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            background: rgba(102, 126, 234, 0.05);
         }
         
         .info-card label {
@@ -65,15 +92,15 @@
             font-size: 10px;
             color: #6c757d;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
             margin-bottom: 6px;
-            font-weight: 600;
+            font-weight: 700;
         }
         
         .info-card .value {
-            font-size: 15px;
+            font-size: 16px;
             color: #333;
-            font-weight: 600;
+            font-weight: 700;
         }
         
         .tabs {
@@ -85,12 +112,12 @@
         }
         
         .tab {
-            padding: 16px 20px;
+            padding: 18px 20px;
             cursor: pointer;
             border: none;
             background: none;
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
             color: #6c757d;
             transition: all 0.3s ease;
             border-bottom: 3px solid transparent;
@@ -109,7 +136,7 @@
         
         .tab-content {
             display: none;
-            padding: 30px;
+            padding: 35px;
             animation: fadeIn 0.3s ease;
         }
         
@@ -122,47 +149,51 @@
             to { opacity: 1; }
         }
         
-        /* ===== NEW GANTT CHART STYLES ===== */
+        /* ===== GANTT CHART STYLES ===== */
         :root {
             --obj1: #667eea;
             --obj2: #f5576c;
             --obj3: #00b4d8;
-            --other: #2ecc71;
+            --other: #52c41a;
         }
         
         .gantt-title {
             text-align: center;
             font-weight: 700;
-            margin-bottom: 20px;
-            font-size: 16px;
+            margin-bottom: 25px;
+            font-size: 18px;
             color: #333;
+            letter-spacing: -0.3px;
         }
         
         .gantt-title span {
             display: block;
             font-size: 12px;
             color: #6c757d;
-            margin-top: 5px;
+            margin-top: 6px;
+            font-weight: 400;
         }
         
         .gantt-wrapper {
             position: relative;
             background: white;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #dee2e6;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+            overflow: hidden;
         }
         
         .gantt-header {
             display: flex;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
         
         .gantt-task-col {
             width: 240px;
-            font-weight: 600;
             color: #333;
             font-size: 12px;
+            padding-bottom: 10px;
         }
         
         .gantt-time-col {
@@ -177,9 +208,9 @@
         .gantt-row {
             display: flex;
             align-items: center;
-            margin: 12px 0;
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
+            margin: 14px 0;
+            padding: 10px 0;
+            border-bottom: 1px solid #f3f4f9;
         }
         
         .gantt-row:last-child {
@@ -196,7 +227,7 @@
         .gantt-bar-area {
             position: relative;
             flex: 1;
-            height: 24px;
+            height: 26px;
             margin-left: 15px;
         }
         
@@ -207,7 +238,7 @@
         }
         
         .gantt-bar.bg {
-            opacity: 0.25;
+            opacity: 0.2;
             z-index: 1;
         }
         
@@ -216,10 +247,15 @@
             font-size: 10px;
             text-align: right;
             padding-right: 8px;
-            line-height: 24px;
+            line-height: 26px;
             font-weight: 600;
             z-index: 2;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .gantt-bar.fg:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
         
         .obj1 { background: var(--obj1); }
@@ -227,35 +263,28 @@
         .obj3 { background: var(--obj3); }
         .other { background: var(--other); }
         
-        .gantt-today-line {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            border-left: 2px dashed #667eea;
-            opacity: 0.7;
-            z-index: 10;
-        }
-        
         .gantt-legend {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
-            font-size: 11px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #dee2e6;
+            gap: 25px;
+            font-size: 12px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #e9ecef;
         }
         
         .gantt-legend span {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            font-weight: 500;
+            color: #333;
         }
         
         .gantt-legend-color {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             border-radius: 3px;
         }
         
@@ -267,30 +296,39 @@
         }
         
         .objective-card {
-            border: 2px solid #dee2e6;
-            border-radius: 8px;
-            padding: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 25px;
             transition: all 0.3s ease;
+            background: linear-gradient(135deg, #f8f9fc 0%, #f3f4f9 100%);
         }
         
         .objective-card:hover {
             border-color: #667eea;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.12);
+            transform: translateY(-2px);
         }
         
         .objective-card h3 {
             color: #333;
-            margin-bottom: 12px;
-            font-size: 14px;
+            margin-bottom: 14px;
+            font-size: 15px;
+            font-weight: 700;
+        }
+        
+        .progress-input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
         }
         
         .progress-bar {
-            width: 100%;
-            height: 20px;
+            flex: 1;
+            height: 22px;
             background: #e9ecef;
-            border-radius: 10px;
+            border-radius: 11px;
             overflow: hidden;
-            margin-bottom: 12px;
         }
         
         .progress-fill {
@@ -302,7 +340,30 @@
             justify-content: center;
             color: white;
             font-size: 10px;
-            font-weight: 600;
+            font-weight: 700;
+        }
+        
+        .progress-input {
+            width: 50px;
+            padding: 6px 10px;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .progress-input:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+        }
+        
+        .progress-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
         
         .risk-grid {
@@ -314,41 +375,47 @@
         
         .risk-card {
             border-left: 4px solid #dee2e6;
-            border-radius: 6px;
-            padding: 18px;
-            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            background: white;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .risk-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
         
         .risk-card.high {
             border-left-color: #f5576c;
-            background: rgba(245, 87, 108, 0.08);
+            background: rgba(245, 87, 108, 0.05);
         }
         
         .risk-card.medium {
             border-left-color: #fee140;
-            background: rgba(254, 225, 64, 0.08);
+            background: rgba(254, 225, 64, 0.05);
         }
         
         .risk-card.low {
-            border-left-color: #43e97b;
-            background: rgba(67, 233, 123, 0.08);
+            border-left-color: #52c41a;
+            background: rgba(82, 196, 26, 0.05);
         }
         
         .risk-card h4 {
             color: #333;
-            margin-bottom: 6px;
-            font-size: 13px;
-            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 700;
         }
         
         .risk-level {
             display: inline-block;
-            padding: 3px 10px;
+            padding: 4px 12px;
             border-radius: 12px;
             font-size: 10px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         
         .risk-level.high {
@@ -362,49 +429,114 @@
         }
         
         .risk-level.low {
-            background: #43e97b;
-            color: #333;
+            background: #52c41a;
+            color: white;
         }
         
         .risk-description {
             font-size: 12px;
             color: #6c757d;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            line-height: 1.5;
         }
         
         .mitigation {
-            font-size: 11px;
+            font-size: 12px;
             color: #667eea;
             font-weight: 500;
-            padding: 6px;
-            background: white;
-            border-radius: 4px;
+            padding: 8px 10px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 6px;
             border-left: 2px solid #667eea;
-            padding-left: 10px;
+            padding-left: 12px;
+        }
+        
+        .meeting-section {
+            margin-bottom: 40px;
+        }
+        
+        .meeting-section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .meeting-section-title.upcoming {
+            border-bottom-color: #52c41a;
+            color: #52c41a;
+        }
+        
+        .meeting-section-title.past {
+            border-bottom-color: #bfbfbf;
+            color: #6c757d;
         }
         
         .meeting-timeline {
-            margin-top: 30px;
+            margin-top: 0;
         }
         
         .meeting-row {
             display: grid;
             grid-template-columns: 150px 1fr;
             gap: 20px;
-            padding: 15px;
-            border-bottom: 1px solid #dee2e6;
+            padding: 18px;
+            border-bottom: 1px solid #e9ecef;
             align-items: start;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .meeting-row:hover {
+            background: #f8f9fc;
+        }
+        
+        .meeting-row.past {
+            opacity: 0.7;
+            background: #f8f9fc;
+        }
+        
+        .meeting-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+        
+        .meeting-badge.upcoming {
+            background: #52c41a;
+            color: white;
+        }
+        
+        .meeting-badge.past {
+            background: #bfbfbf;
+            color: white;
         }
         
         .meeting-date {
-            font-weight: 600;
+            font-weight: 700;
             color: #667eea;
             font-size: 13px;
+        }
+        
+        .meeting-date.past {
+            color: #6c757d;
         }
         
         .meeting-agenda {
             font-size: 12px;
             color: #6c757d;
+            line-height: 1.5;
+        }
+        
+        .meeting-agenda.past {
+            text-decoration: line-through;
         }
         
         .resource-table {
@@ -414,50 +546,61 @@
         }
         
         .resource-table thead {
-            background: #e9ecef;
+            background: linear-gradient(135deg, #f8f9fc 0%, #f3f4f9 100%);
         }
         
         .resource-table th {
-            padding: 12px;
+            padding: 14px 12px;
             text-align: left;
-            font-weight: 600;
+            font-weight: 700;
             color: #333;
             font-size: 12px;
-            border-bottom: 2px solid #dee2e6;
+            border-bottom: 2px solid #e9ecef;
         }
         
         .resource-table td {
-            padding: 12px;
-            border-bottom: 1px solid #dee2e6;
+            padding: 14px 12px;
+            border-bottom: 1px solid #e9ecef;
             font-size: 12px;
             color: #6c757d;
         }
         
         .pub-item {
-            padding: 15px;
-            margin-bottom: 12px;
+            padding: 20px;
+            margin-bottom: 14px;
             border-left: 4px solid #667eea;
-            background: #f8f9fa;
-            border-radius: 4px;
+            background: linear-gradient(135deg, #f8f9fc 0%, #f3f4f9 100%);
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .pub-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .pub-item[style*="border-left: 4px solid #28a745"] {
+            border-left-color: #52c41a;
+            background: rgba(82, 196, 26, 0.05);
         }
         
         .pub-title {
-            font-weight: 600;
+            font-weight: 700;
             color: #333;
-            margin-bottom: 6px;
-            font-size: 13px;
+            margin-bottom: 8px;
+            font-size: 14px;
         }
         
         .pub-timeline {
             font-size: 11px;
             color: #6c757d;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         
         .pub-status {
             font-size: 11px;
             color: #667eea;
-            font-weight: 600;
+            font-weight: 700;
         }
         
         .backup-grid {
@@ -467,17 +610,23 @@
         }
         
         .backup-card {
-            border: 2px solid #43e97b;
-            border-radius: 8px;
-            padding: 18px;
-            background: rgba(67, 233, 123, 0.05);
+            border: 1px solid #d4edda;
+            border-radius: 12px;
+            padding: 20px;
+            background: rgba(82, 196, 26, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .backup-card:hover {
+            border-color: #52c41a;
+            box-shadow: 0 4px 12px rgba(82, 196, 26, 0.15);
         }
         
         .backup-card h4 {
-            color: #43e97b;
-            margin-bottom: 10px;
-            font-size: 13px;
-            font-weight: 600;
+            color: #52c41a;
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 700;
         }
         
         .backup-card p {
@@ -496,15 +645,22 @@
         .stat-box {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            padding: 18px;
-            border-radius: 8px;
+            padding: 25px;
+            border-radius: 12px;
             text-align: center;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
         }
         
         .stat-number {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 5px;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
         }
         
         .stat-label {
@@ -512,6 +668,7 @@
             opacity: 0.9;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            font-weight: 600;
         }
         
         @media (max-width: 768px) {
@@ -520,7 +677,7 @@
             }
             
             .header h1 {
-                font-size: 20px;
+                font-size: 24px;
             }
             
             .tabs {
@@ -528,7 +685,7 @@
             }
             
             .tab {
-                padding: 12px 15px;
+                padding: 14px 15px;
                 font-size: 12px;
             }
         }
@@ -537,8 +694,10 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🧬 PhD Project Timeline & Management Dashboard</h1>
-            <p>Host-Pathogen Interactions of Mycobacterium tuberculosis Complex</p>
+            <div class="header-content">
+                <h1>🧬 PhD Project Timeline & Management Dashboard</h1>
+                <p>Host-Pathogen Interactions of Mycobacterium tuberculosis Complex</p>
+            </div>
         </div>
         
         <div class="info-grid">
@@ -556,7 +715,7 @@
             </div>
             <div class="info-card">
                 <label>Last Accessed</label>
-                <div class="value" id="lastAccessed" style="font-size: 13px;">Today</div>
+                <div class="value" id="lastAccessed" style="font-size: 14px;">Today</div>
             </div>
             <div class="info-card">
                 <label>Current Progress</label>
@@ -568,7 +727,7 @@
             </div>
             <div class="info-card">
                 <label>Overall Progress</label>
-                <div class="value">62%</div>
+                <div class="value" id="overallProgress">71%</div>
             </div>
         </div>
         
@@ -595,7 +754,6 @@
                     <div class="gantt-time-col" id="ganttMonths"></div>
                 </div>
                 
-                <div class="gantt-today-line" id="todayLine"></div>
                 <div id="ganttRows"></div>
             </div>
             
@@ -603,7 +761,7 @@
                 <span><div class="gantt-legend-color obj1"></div>Objective 1: Molecular Characterization</span>
                 <span><div class="gantt-legend-color obj2"></div>Objective 2: Bacterial Polymorphisms</span>
                 <span><div class="gantt-legend-color obj3"></div>Objective 3: Host Genomics</span>
-                <span><div class="gantt-legend-color other"></div>Other Tasks</span>
+                <span><div class="gantt-legend-color other"></div>Supporting Tasks</span>
             </div>
         </div>
         
@@ -619,7 +777,7 @@
                     <div class="stat-label">Active Tasks</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number">62%</div>
+                    <div class="stat-number" id="statOverallProgress">71%</div>
                     <div class="stat-label">Overall Progress</div>
                 </div>
                 <div class="stat-box">
@@ -628,46 +786,55 @@
                 </div>
             </div>
             
-            <h3 style="margin-bottom: 20px; color: #333; font-weight: 600;">Progress by Objective</h3>
+            <h3 style="margin-bottom: 25px; color: #333; font-weight: 700; font-size: 16px;">Progress by Objective (Click to Edit)</h3>
             
             <div class="objectives-grid">
                 <div class="objective-card">
-                    <h3>🔬 Obj 1: Bacteria Load and TB Severity</h3>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 100%;">100%</div>
+                    <h3>🔬 Obj 1: Bacterial Load & TB Severity</h3>
+                    <div class="progress-input-group">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="obj1Bar" style="width: 100%;">100%</div>
+                        </div>
+                        <input type="number" id="obj1Input" class="progress-input" value="100" min="0" max="100" onchange="updateProgress()" title="Click to edit progress">
                     </div>
-                    <p style="font-size: 11px; color: #6c757d;">✅ Manuscript submitted for peer review (ASM Microbiology Spectrum).</p>
+                    <p style="font-size: 12px; color: #6c757d; line-height: 1.5;">✅ Manuscript submitted for peer review (ASM Microbiology Spectrum).</p>
                 </div>
                 
                 <div class="objective-card">
                     <h3>🧬 Obj 2: Bacterial Polymorphisms</h3>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 60%;">60%</div>
+                    <div class="progress-input-group">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="obj2Bar" style="width: 60%; background: linear-gradient(90deg, #f5576c, #e83e4f);">60%</div>
+                        </div>
+                        <input type="number" id="obj2Input" class="progress-input" value="60" min="0" max="100" onchange="updateProgress()" title="Click to edit progress">
                     </div>
-                    <p style="font-size: 11px; color: #6c757d;">Phylogenomics analysis in progress with Prof. Sebastian Gagneux. More sequences being processed.</p>
+                    <p style="font-size: 12px; color: #6c757d; line-height: 1.5;">Phylogenomics analysis in progress with Prof. Sebastian Gagneux. More sequences being processed.</p>
                 </div>
                 
                 <div class="objective-card">
                     <h3>👥 Obj 3: Host Genomic Variations</h3>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 70%;">70%</div>
+                    <div class="progress-input-group">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="obj3Bar" style="width: 70%; background: linear-gradient(90deg, #00b4d8, #0099bb);">70%</div>
+                        </div>
+                        <input type="number" id="obj3Input" class="progress-input" value="70" min="0" max="100" onchange="updateProgress()" title="Click to edit progress">
                     </div>
-                    <p style="font-size: 11px; color: #6c757d;">MS 1 at 80%. MS 2 data analysis complete, needs manuscript revisions.</p>
+                    <p style="font-size: 12px; color: #6c757d; line-height: 1.5;">MS 1 at 80%. MS 2 data analysis complete, needs manuscript revisions.</p>
                 </div>
                 
                 <div class="objective-card">
                     <h3>📚 Supporting Tasks</h3>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 50%;">50%</div>
+                        <div class="progress-fill" style="width: 60%; background: linear-gradient(90deg, #52c41a, #389e0d);">60%</div>
                     </div>
-                    <p style="font-size: 11px; color: #6c757d;">Literature review 80% complete. Thesis writing ongoing. Discussion chapter for July.</p>
+                    <p style="font-size: 12px; color: #6c757d; line-height: 1.5;">Literature review 80% complete. Thesis writing ongoing. Discussion chapter for July.</p>
                 </div>
             </div>
         </div>
         
         <!-- RISK ASSESSMENT TAB -->
         <div id="risks" class="tab-content">
-            <h3 style="margin-bottom: 20px; color: #333; font-weight: 600;">Risk Assessment & Mitigation Strategy</h3>
+            <h3 style="margin-bottom: 25px; color: #333; font-weight: 700; font-size: 16px;">Risk Assessment & Mitigation Strategy</h3>
             
             <div class="risk-grid">
                 <div class="risk-card high">
@@ -716,70 +883,28 @@
         
         <!-- SUPERVISOR MEETINGS TAB -->
         <div id="meetings" class="tab-content">
-            <h3 style="margin-bottom: 20px; color: #333; font-weight: 600;">Biweekly Supervisor Meeting Schedule</h3>
+            <h3 style="margin-bottom: 25px; color: #333; font-weight: 700; font-size: 16px;">Biweekly Supervisor Meeting Schedule</h3>
             
-            <p style="font-size: 12px; color: #6c757d; margin-bottom: 20px;">📅 Every 2 weeks | Duration: 45-60 minutes</p>
+            <p style="font-size: 12px; color: #6c757d; margin-bottom: 20px; font-weight: 500;">📅 Every 2 weeks on Mondays at 10:00 AM | Duration: 45-60 minutes</p>
             
-            <div class="meeting-timeline">
-                <div class="meeting-row">
-                    <div class="meeting-date">🔵 Feb 13</div>
-                    <div class="meeting-agenda"><strong>Meeting 1:</strong> Timeline overview, MS 2 manuscript plan, phylogenomics update with Prof. Gagneux coordination.</div>
-                </div>
-                <div class="meeting-row">
-                    <div class="meeting-date">🔵 Feb 27</div>
-                    <div class="meeting-agenda"><strong>Meeting 2:</strong> MS 2 progress check. Thesis outline review. Phylogenomics data status.</div>
-                </div>
-                <div class="meeting-row">
-                    <div class="meeting-date">🔵 Mar 13</div>
-                    <div class="meeting-agenda"><strong>Meeting 3:</strong> Thesis Chapter 1-2 review. Literature integration plan.</div>
-                </div>
-                <div class="meeting-row">
-                    <div class="meeting-date">🔵 Mar 27</div>
-                    <div class="meeting-agenda"><strong>Meeting 4:</strong> Phylogenomics manuscript outline. Chapters 2-3 feedback. MS 1 reviewer status.</div>
-                </div>
-                <div class="meeting-row">
-                    <div class="meeting-date">🔵 Apr 10</div>
-                    <div class="meeting-agenda"><strong>Meeting 5:</strong> MS 1 revisions planning (if reviews ready). All 3 objectives assessment. Thesis writing acceleration.</div>
-                </div>
-                <div class="meeting-row">
-                    <div class="meeting-date">🔵 Apr 24</div>
-                    <div class="meeting-agenda"><strong>Meeting 6:</strong> Chapters 2-3 draft reviews. Phylogenomics MS status. Thesis coherence check.</div>
-                </div>
-                <div class="meeting-row">
-                    <div class="meeting-date">🔵 May 8</div>
-                    <div class="meeting-agenda"><strong>Meeting 7:</strong> Integrate manuscripts into thesis. Chapter 4 outline. Final publication strategy.</div>
-                </div>
-                <div class="meeting-row">
-                    <div class="meeting-date">🔵 May 22</div>
-                    <div class="meeting-agenda"><strong>Meeting 8:</strong> Chapters 3-4 review. Manuscript feedback integration. Thesis formatting.</div>
-                </div>
-                <div class="meeting-row">
-                    <div class="meeting-date">🔵 Jun 5</div>
-                    <div class="meeting-agenda"><strong>Meeting 9:</strong> Full thesis draft review. Submission readiness. Final edits planning.</div>
-                </div>
-                <div class="meeting-row">
-                    <div class="meeting-date">🔵 Jun 19</div>
-                    <div class="meeting-agenda"><strong>Meeting 10:</strong> Final supervisor feedback. Printing/submission logistics.</div>
-                </div>
-            </div>
+            <div id="meetingsContainer"></div>
         </div>
         
         <!-- PUBLICATIONS TAB -->
         <div id="publications" class="tab-content">
-            <h3 style="margin-bottom: 20px; color: #333; font-weight: 600;">Publication Strategy & Timeline</h3>
+            <h3 style="margin-bottom: 25px; color: #333; font-weight: 700; font-size: 16px;">Publication Strategy & Timeline</h3>
             
-            <div class="pub-item" style="border-left: 4px solid #28a745;">
+            <div class="pub-item" style="border-left: 4px solid #52c41a;">
                 <div class="pub-title">
                     🧬 <a href="https://doi.org/10.1016/j.tube.2025.102701" 
                          target="_blank" 
-                         style="text-decoration: none; color: #0d6efd; font-weight: 600;">
-                        Restriction of the main lineages of <em>Mycobacterium africanum</em> to West Africa: 
-                        Insights from host–pathogen interaction studies
+                         style="text-decoration: none; color: #0d6efd; font-weight: 700;">
+                        Restriction of the main lineages of <em>Mycobacterium africanum</em> to West Africa: Insights from host–pathogen interaction studies
                     </a>
                 </div>
                 <div class="pub-timeline"><strong>Status:</strong> Published (2025)</div>
                 <div class="pub-status">✅ Published — <em>Tuberculosis</em></div>
-                <div style="margin-top: 8px; font-size: 11px; color: #6c757d;">
+                <div style="margin-top: 10px; font-size: 11px; color: #6c757d;">
                     <strong>Authors:</strong> Theophilus Afum, Prince Asare, Stephen Osei-Wusu, Dorothy Yeboah et al.<br>
                     <strong>DOI:</strong> 10.1016/j.tube.2025.102701
                 </div>
@@ -789,7 +914,7 @@
                 <div class="pub-title">📰 Manuscript 1: Bacterial Load Comparison (MTBC)</div>
                 <div class="pub-timeline"><strong>Status:</strong> Submitted (Dec 2025) | <strong>Expected Review:</strong> Apr–Jun 2026</div>
                 <div class="pub-status">🔄 Under Peer Review (ASM Microbiology Spectrum)</div>
-                <div style="margin-top: 8px; font-size: 11px; color: #6c757d;">
+                <div style="margin-top: 10px; font-size: 11px; color: #6c757d;">
                     <strong>Target Publication:</strong> May 2026<br>
                     <strong>Revision Timeline:</strong> Upon reviewer feedback
                 </div>
@@ -799,7 +924,7 @@
                 <div class="pub-title">📰 Manuscript 2: Phylogenomics & Polymorphisms</div>
                 <div class="pub-timeline"><strong>Status:</strong> Data Analysis | <strong>Target Submission:</strong> May 2026</div>
                 <div class="pub-status">✍️ Analysis discussion with Prof. Sebastian Gagneux</div>
-                <div style="margin-top: 8px; font-size: 11px; color: #6c757d;">
+                <div style="margin-top: 10px; font-size: 11px; color: #6c757d;">
                     <strong>Target Journal:</strong> Genome Biology / PLoS Pathogens<br>
                     <strong>Expected Acceptance:</strong> Oct–Nov 2026
                 </div>
@@ -809,7 +934,7 @@
                 <div class="pub-title">📰 Manuscript 3A: Host Genetics MS 1 (Case–Case GWAS)</div>
                 <div class="pub-timeline"><strong>Status:</strong> 80% Complete | <strong>Target Submission:</strong> Mar 2026</div>
                 <div class="pub-status">✍️ Final Analysis & Revisions</div>
-                <div style="margin-top: 8px; font-size: 11px; color: #6c757d;">
+                <div style="margin-top: 10px; font-size: 11px; color: #6c757d;">
                     <strong>Target Journal:</strong> PLoS Genetics / Nature Communications<br>
                     <strong>Expected Acceptance:</strong> Jul–Aug 2026
                 </div>
@@ -819,7 +944,7 @@
                 <div class="pub-title">📰 Manuscript 3B: Host Genetics MS 2 (Case–Control GWAS)</div>
                 <div class="pub-timeline"><strong>Status:</strong> Analysis Complete | <strong>Target Submission:</strong> Aug 2026</div>
                 <div class="pub-status">✍️ Manuscript Finalization & Circulation</div>
-                <div style="margin-top: 8px; font-size: 11px; color: #6c757d;">
+                <div style="margin-top: 10px; font-size: 11px; color: #6c757d;">
                     <strong>Target Journal:</strong> American Journal of Human Genetics / BMC Genomics<br>
                     <strong>Critical Deadline:</strong> Aug 31, 2026
                 </div>
@@ -828,9 +953,9 @@
         
         <!-- RESOURCE ALLOCATION TAB -->
         <div id="resources" class="tab-content">
-            <h3 style="margin-bottom: 20px; color: #333; font-weight: 600;">Weekly Time & Resource Allocation</h3>
+            <h3 style="margin-bottom: 25px; color: #333; font-weight: 700; font-size: 16px;">Weekly Time & Resource Allocation</h3>
             
-            <p style="font-size: 12px; color: #6c757d; margin-bottom: 20px;">⏱️ Target: 50 hours/week | Lab work, analysis, writing, and meetings</p>
+            <p style="font-size: 12px; color: #6c757d; margin-bottom: 20px; font-weight: 500;">⏱️ Target: 50 hours/week | Lab work, analysis, writing, and meetings</p>
             
             <table class="resource-table">
                 <thead>
@@ -884,9 +1009,9 @@
         
         <!-- BACKUP OBJECTIVES TAB -->
         <div id="backup" class="tab-content">
-            <h3 style="margin-bottom: 20px; color: #333; font-weight: 600;">Backup Objectives & Contingency Plans</h3>
+            <h3 style="margin-bottom: 25px; color: #333; font-weight: 700; font-size: 16px;">Backup Objectives & Contingency Plans</h3>
             
-            <p style="font-size: 12px; color: #6c757d; margin-bottom: 20px;">🛡️ Secondary research directions if timeline accelerates or key insights emerge.</p>
+            <p style="font-size: 12px; color: #6c757d; margin-bottom: 20px; font-weight: 500;">🛡️ Secondary research directions if timeline accelerates or key insights emerge.</p>
             
             <div class="backup-grid">
                 <div class="backup-card">
@@ -908,6 +1033,27 @@
     </div>
     
     <script>
+        /* ===== OBJECTIVE PROGRESS DATA ===== */
+        const objectives = {
+            obj1: { name: 'Bacterial Load', min: 0, max: 100 },
+            obj2: { name: 'Phylogenomics', min: 0, max: 100 },
+            obj3: { name: 'Host Genomics', min: 0, max: 100 }
+        };
+        
+        /* ===== MEETINGS DATA ===== */
+        const meetingSchedules = [
+            { date: '2026-02-10', agenda: 'Timeline overview, MS 2 manuscript plan, phylogenomics update with Prof. Gagneux coordination.' },
+            { date: '2026-02-24', agenda: 'MS 2 progress check. Thesis outline review. Phylogenomics data status.' },
+            { date: '2026-03-10', agenda: 'Thesis Chapter 1-2 review. Literature integration plan.' },
+            { date: '2026-03-24', agenda: 'Phylogenomics manuscript outline. Chapters 2-3 feedback. MS 1 reviewer status.' },
+            { date: '2026-04-07', agenda: 'MS 1 revisions planning (if reviews ready). All 3 objectives assessment. Thesis writing acceleration.' },
+            { date: '2026-04-21', agenda: 'Chapters 2-3 draft reviews. Phylogenomics MS status. Thesis coherence check.' },
+            { date: '2026-05-05', agenda: 'Integrate manuscripts into thesis. Chapter 4 outline. Final publication strategy.' },
+            { date: '2026-05-19', agenda: 'Chapters 3-4 review. Manuscript feedback integration. Thesis formatting.' },
+            { date: '2026-06-02', agenda: 'Full thesis draft review. Submission readiness. Final edits planning.' },
+            { date: '2026-06-16', agenda: 'Final supervisor feedback. Printing/submission logistics.' }
+        ];
+        
         /* ===== TAB SWITCHING ===== */
         function switchTab(tabName) {
             const contents = document.querySelectorAll('.tab-content');
@@ -947,64 +1093,150 @@
             return formatted;
         }
         
-        /* ===== INITIALIZE TIMESTAMPS ===== */
-        function initializeTimestamps() {
-            const daysElapsed = calculateDaysElapsed();
-            const daysElement = document.getElementById('daysElapsed');
-            if (daysElement) daysElement.textContent = daysElapsed;
+        /* ===== UPDATE PROGRESS - DYNAMIC CALCULATION ===== */
+        function updateProgress() {
+            // Get values from input fields
+            const obj1 = parseInt(document.getElementById('obj1Input').value) || 0;
+            const obj2 = parseInt(document.getElementById('obj2Input').value) || 0;
+            const obj3 = parseInt(document.getElementById('obj3Input').value) || 0;
             
-            const accessElement = document.getElementById('lastAccessed');
-            if (accessElement) accessElement.textContent = updateLastAccessed();
+            // Update progress bars
+            document.getElementById('obj1Bar').style.width = obj1 + '%';
+            document.getElementById('obj1Bar').textContent = obj1 + '%';
+            
+            document.getElementById('obj2Bar').style.width = obj2 + '%';
+            document.getElementById('obj2Bar').textContent = obj2 + '%';
+            
+            document.getElementById('obj3Bar').style.width = obj3 + '%';
+            document.getElementById('obj3Bar').textContent = obj3 + '%';
+            
+            // Calculate overall progress as average of 3 objectives
+            const overallProgress = Math.round((obj1 + obj2 + obj3) / 3);
+            
+            // Update header
+            document.getElementById('overallProgress').textContent = overallProgress + '%';
+            
+            // Update stat box
+            document.getElementById('statOverallProgress').textContent = overallProgress + '%';
+            
+            // Rebuild Gantt chart with new progress
+            buildGanttChart();
         }
         
-        /* ===== NEW GANTT CHART DATA ===== */
+        /* ===== BUILD AND UPDATE MEETINGS ===== */
+        function buildMeetings() {
+            const container = document.getElementById('meetingsContainer');
+            container.innerHTML = '';
+            
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            let upcomingHTML = '<div class="meeting-section"><div class="meeting-section-title upcoming">🟢 Upcoming Meetings</div><div class="meeting-timeline">';
+            let pastHTML = '<div class="meeting-section"><div class="meeting-section-title past">🔵 Past Meetings</div><div class="meeting-timeline">';
+            
+            let hasUpcoming = false;
+            let hasPast = false;
+            
+            meetingSchedules.forEach((meeting, index) => {
+                const meetingDate = new Date(meeting.date);
+                const isUpcoming = meetingDate >= today;
+                const isNext = isUpcoming && !hasUpcoming;
+                
+                const dateStr = meetingDate.toLocaleDateString('en-US', { 
+                    weekday: 'short', 
+                    month: 'short', 
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+                
+                const meetingRow = `
+                    <div class="meeting-row ${!isUpcoming ? 'past' : ''}">
+                        <div class="meeting-date ${!isUpcoming ? 'past' : ''}">
+                            ${isNext ? '🔵' : '🔵'} ${dateStr}
+                            ${isNext ? '<span class="meeting-badge upcoming">NEXT</span>' : ''}
+                            ${!isUpcoming ? '<span class="meeting-badge past">PAST</span>' : '<span class="meeting-badge upcoming">UPCOMING</span>'}
+                        </div>
+                        <div class="meeting-agenda ${!isUpcoming ? 'past' : ''}">
+                            <strong>Meeting ${index + 1}:</strong> ${meeting.agenda}
+                        </div>
+                    </div>
+                `;
+                
+                if (isUpcoming) {
+                    hasUpcoming = true;
+                    upcomingHTML += meetingRow;
+                } else {
+                    hasPast = true;
+                    pastHTML += meetingRow;
+                }
+            });
+            
+            upcomingHTML += '</div></div>';
+            pastHTML += '</div></div>';
+            
+            // Add sections only if they have content
+            if (hasUpcoming) container.innerHTML += upcomingHTML;
+            if (hasPast) container.innerHTML += pastHTML;
+            
+            if (!hasUpcoming && !hasPast) {
+                container.innerHTML = '<p style="color: #6c757d; font-size: 14px;">No meetings scheduled.</p>';
+            }
+        }
+        
+        /* ===== GANTT CHART DATA ===== */
         const projectStart = new Date("2026-01-01");
         const projectEnd   = new Date("2026-09-01");
         
-        const tasks = [
-            {
-                name: "Bacterial Load Comparison",
-                start: "2026-01-01",
-                end:   "2026-03-15",
-                progress: 1.0,
-                objective: "obj1"
-            },
-            {
-                name: "Phylogenomics & Polymorphisms",
-                start: "2026-03-01",
-                end:   "2026-07-30",
-                progress: 0.6,
-                objective: "obj2"
-            },
-            {
-                name: "Host Genetics MS 1 (Case-case GWAS)",
-                start: "2026-01-01",
-                end:   "2026-06-30",
-                progress: 0.8,
-                objective: "obj3"
-            },
-            {
-                name: "Host Genetics MS 2 (Case-Control GWAS",
-                start: "2026-01-01",
-                end:   "2026-08-31",
-                progress: 0.8,
-                objective: "obj3"
-            },
-            {
-                name: "Literature Review",
-                start: "2026-01-01",
-                end:   "2026-08-30",
-                progress: 0.8,
-                objective: "Thesis compilation"
-            },
-            {
-                name: "Thesis Writing and Submission",
-                start: "2026-01-01",
-                end:   "2026-09-01",
-                progress: 0.6,
-                objective: "Thesis complilation"
-            }
-        ];
+        function getTasksWithProgress() {
+            const obj1 = parseInt(document.getElementById('obj1Input').value) || 100;
+            const obj2 = parseInt(document.getElementById('obj2Input').value) || 60;
+            const obj3 = parseInt(document.getElementById('obj3Input').value) || 70;
+            
+            return [
+                {
+                    name: "Bacterial Load Comparison",
+                    start: "2026-01-01",
+                    end:   "2026-03-15",
+                    progress: obj1 / 100,
+                    objective: "obj1"
+                },
+                {
+                    name: "Phylogenomics & Polymorphisms",
+                    start: "2026-01-01",
+                    end:   "2026-05-31",
+                    progress: obj2 / 100,
+                    objective: "obj2"
+                },
+                {
+                    name: "Host Genetics MS 1 (Case-case GWAS)",
+                    start: "2026-01-01",
+                    end:   "2026-03-31",
+                    progress: obj3 / 100,
+                    objective: "obj3"
+                },
+                {
+                    name: "Host Genetics MS 2 (Case-Control GWAS)",
+                    start: "2026-01-01",
+                    end:   "2026-07-31",
+                    progress: obj3 / 100,
+                    objective: "obj3"
+                },
+                {
+                    name: "Literature Review",
+                    start: "2026-01-01",
+                    end:   "2026-08-30",
+                    progress: 0.8,
+                    objective: "other"
+                },
+                {
+                    name: "Thesis Writing and Submission",
+                    start: "2026-01-01",
+                    end:   "2026-09-01",
+                    progress: 0.6,
+                    objective: "other"
+                }
+            ];
+        }
         
         /* ===== GANTT HELPER FUNCTIONS ===== */
         const totalDuration = projectEnd - projectStart;
@@ -1015,18 +1247,25 @@
         
         /* ===== BUILD GANTT CHART ===== */
         function buildGanttChart() {
-            // Build month header
+            const rowsDiv = document.getElementById("ganttRows");
             const monthsDiv = document.getElementById("ganttMonths");
-            let m = new Date(projectStart);
-            while (m <= projectEnd) {
-                const span = document.createElement("span");
-                span.innerText = m.toLocaleString("default", { month: "short", year: "2-digit" });
-                monthsDiv.appendChild(span);
-                m.setMonth(m.getMonth() + 1);
+            
+            // Clear and rebuild month headers only once
+            if (monthsDiv.children.length === 0) {
+                let m = new Date(projectStart);
+                while (m <= projectEnd) {
+                    const span = document.createElement("span");
+                    span.innerText = m.toLocaleString("default", { month: "short", year: "2-digit" });
+                    monthsDiv.appendChild(span);
+                    m.setMonth(m.getMonth() + 1);
+                }
             }
             
-            // Build task rows
-            const rowsDiv = document.getElementById("ganttRows");
+            // Clear rows
+            rowsDiv.innerHTML = '';
+            
+            // Build task rows with current progress
+            const tasks = getTasksWithProgress();
             tasks.forEach(t => {
                 const row = document.createElement("div");
                 row.className = "gantt-row";
@@ -1048,16 +1287,21 @@
                 
                 rowsDiv.appendChild(row);
             });
-            
-            // Set today line
-            const today = new Date();
-            const todayPercent = percent(today);
-            document.getElementById("todayLine").style.left = todayPercent + "%";
         }
         
         /* ===== INITIALIZE ON PAGE LOAD ===== */
-        initializeTimestamps();
-        buildGanttChart();
+        function initialize() {
+            const daysElapsed = calculateDaysElapsed();
+            document.getElementById('daysElapsed').textContent = daysElapsed;
+            document.getElementById('lastAccessed').textContent = updateLastAccessed();
+            
+            buildGanttChart();
+            buildMeetings();
+            updateProgress();
+        }
+        
+        // Initialize when page loads
+        initialize();
     </script>
 </body>
 </html>
