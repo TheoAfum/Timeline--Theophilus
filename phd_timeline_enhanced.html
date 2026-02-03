@@ -103,6 +103,14 @@
             font-weight: 700;
         }
         
+        .info-card.clickable {
+            cursor: pointer;
+        }
+        
+        .info-card.clickable:hover .value {
+            color: #667eea;
+        }
+        
         .tabs {
             display: flex;
             border-bottom: 2px solid #e9ecef;
@@ -364,6 +372,56 @@
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .active-tasks-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .task-card {
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fc 0%, #f3f4f9 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .task-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.12);
+            transform: translateY(-2px);
+        }
+        
+        .task-card h4 {
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        
+        .task-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .task-dates {
+            font-size: 11px;
+            color: #6c757d;
+            margin-bottom: 8px;
+        }
+        
+        .task-progress {
+            font-size: 12px;
+            font-weight: 600;
+            color: #667eea;
         }
         
         .risk-grid {
@@ -650,11 +708,16 @@
             text-align: center;
             box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
         
         .stat-box:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .stat-box.clickable:hover {
+            background: linear-gradient(135deg, #5568d3, #6a4090);
         }
         
         .stat-number {
@@ -696,7 +759,7 @@
         <div class="header">
             <div class="header-content">
                 <h1>🧬 PhD Project Timeline & Management Dashboard</h1>
-                <p>Host-Pathogen Interactions of Mycobacterium tuberculosis Complex</p>
+                <p>Host-Pathogen Interactions of <i>Mycobacterium tuberculosis<i> Complex</p>
             </div>
         </div>
         
@@ -773,8 +836,8 @@
                     <div class="stat-label">Main Objectives</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number">7</div>
-                    <div class="stat-label">Active Tasks</div>
+                    <div class="stat-number clickable" onclick="switchTab('active-tasks')">7</div>
+                    <div class="stat-label clickable" onclick="switchTab('active-tasks')" style="cursor: pointer;">Active Tasks</div>
                 </div>
                 <div class="stat-box">
                     <div class="stat-number" id="statOverallProgress">71%</div>
@@ -830,6 +893,13 @@
                     <p style="font-size: 12px; color: #6c757d; line-height: 1.5;">Literature review 80% complete. Thesis writing ongoing. Discussion chapter for July.</p>
                 </div>
             </div>
+        </div>
+        
+        <!-- ACTIVE TASKS TAB -->
+        <div id="active-tasks" class="tab-content">
+            <h3 style="margin-bottom: 25px; color: #333; font-weight: 700; font-size: 18px;">🚀 7 Active Tasks</h3>
+            
+            <div class="active-tasks-list" id="activeTasksList"></div>
         </div>
         
         <!-- RISK ASSESSMENT TAB -->
@@ -1033,25 +1103,78 @@
     </div>
     
     <script>
-        /* ===== OBJECTIVE PROGRESS DATA ===== */
-        const objectives = {
-            obj1: { name: 'Bacterial Load', min: 0, max: 100 },
-            obj2: { name: 'Phylogenomics', min: 0, max: 100 },
-            obj3: { name: 'Host Genomics', min: 0, max: 100 }
-        };
-        
         /* ===== MEETINGS DATA ===== */
         const meetingSchedules = [
-            { date: '2026-02-10', agenda: 'Timeline overview, MS 2 manuscript plan, phylogenomics update with Prof. Gagneux coordination.' },
-            { date: '2026-02-24', agenda: 'MS 2 progress check. Thesis outline review. Phylogenomics data status.' },
-            { date: '2026-03-10', agenda: 'Thesis Chapter 1-2 review. Literature integration plan.' },
-            { date: '2026-03-24', agenda: 'Phylogenomics manuscript outline. Chapters 2-3 feedback. MS 1 reviewer status.' },
-            { date: '2026-04-07', agenda: 'MS 1 revisions planning (if reviews ready). All 3 objectives assessment. Thesis writing acceleration.' },
-            { date: '2026-04-21', agenda: 'Chapters 2-3 draft reviews. Phylogenomics MS status. Thesis coherence check.' },
-            { date: '2026-05-05', agenda: 'Integrate manuscripts into thesis. Chapter 4 outline. Final publication strategy.' },
-            { date: '2026-05-19', agenda: 'Chapters 3-4 review. Manuscript feedback integration. Thesis formatting.' },
-            { date: '2026-06-02', agenda: 'Full thesis draft review. Submission readiness. Final edits planning.' },
-            { date: '2026-06-16', agenda: 'Final supervisor feedback. Printing/submission logistics.' }
+            { date: '2026-02-09', agenda: 'Timeline overview, MS 2 manuscript plan, phylogenomics update with Prof. Gagneux coordination.' },
+            { date: '2026-02-23', agenda: 'MS 2 progress check. Thesis outline review. Phylogenomics data status.' },
+            { date: '2026-03-09', agenda: 'Thesis Chapter 1-2 review. Literature integration plan.' },
+            { date: '2026-03-23', agenda: 'Phylogenomics manuscript outline. Chapters 2-3 feedback. MS 1 reviewer status.' },
+            { date: '2026-04-06', agenda: 'MS 1 revisions planning (if reviews ready). All 3 objectives assessment. Thesis writing acceleration.' },
+            { date: '2026-04-20', agenda: 'Chapters 2-3 draft reviews. Phylogenomics MS status. Thesis coherence check.' },
+            { date: '2026-05-04', agenda: 'Integrate manuscripts into thesis. Chapter 4 outline. Final publication strategy.' },
+            { date: '2026-05-18', agenda: 'Chapters 3-4 review. Manuscript feedback integration. Thesis formatting.' },
+            { date: '2026-06-01', agenda: 'Full thesis draft review. Submission readiness. Final edits planning.' },
+            { date: '2026-06-15', agenda: 'Final supervisor feedback. Printing/submission logistics.' }
+        ];
+        
+        /* ===== ACTIVE TASKS DATA ===== */
+        const activeTasks = [
+            {
+                name: "Bacterial Load Comparison & Disease Secerity",
+                dates: "Jan 1 - Mar 15, 2026",
+                objective: "Objective 1",
+                progress: 100,
+                status: "Completed",
+                emoji: "✅"
+            },
+            {
+                name: "Phylogenomics & Polymorphisms",
+                dates: "Jan 1 - May 31, 2026",
+                objective: "Objective 2",
+                progress: 60,
+                status: "In Progress",
+                emoji: "🔄"
+            },
+            {
+                name: "Host Genetics MS 1 (Case-case GWAS)",
+                dates: "Jan 1 - Mar 31, 2026",
+                objective: "Objective 3",
+                progress: 80,
+                status: "Finalizing",
+                emoji: "📝"
+            },
+            {
+                name: "Host Genetics MS 2 (Case-Control GWAS)",
+                dates: "Jan 1 - Jul 31, 2026",
+                objective: "Objective 3",
+                progress: 60,
+                status: "Critical Path",
+                emoji: "⚡"
+            },
+            {
+                name: "Literature Review",
+                dates: "Jan 1 - Aug 30, 2026",
+                objective: "Supporting",
+                progress: 80,
+                status: "On Track",
+                emoji: "📚"
+            },
+            {
+                name: "Thesis Writing",
+                dates: "Jan 1 - Sep 1, 2026",
+                objective: "Supporting",
+                progress: 60,
+                status: "Ongoing",
+                emoji: "✍️"
+            },
+            {
+                name: "Project Management & Meetings",
+                dates: "Biweekly - Ongoing",
+                objective: "Supporting",
+                progress: 50,
+                status: "Continuous",
+                emoji: "📅"
+            }
         ];
         
         /* ===== TAB SWITCHING ===== */
@@ -1061,7 +1184,28 @@
             const tabs = document.querySelectorAll('.tab');
             tabs.forEach(tab => tab.classList.remove('active'));
             document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
+            
+            // Find and click the corresponding tab button
+            const tabButtons = document.querySelectorAll('.tab');
+            tabButtons.forEach(btn => {
+                if (btn.textContent.includes('Active Tasks') && tabName === 'active-tasks') {
+                    btn.classList.add('active');
+                } else if (btn.textContent.includes('Gantt') && tabName === 'gantt') {
+                    btn.classList.add('active');
+                } else if (btn.textContent.includes('Progress') && tabName === 'progress') {
+                    btn.classList.add('active');
+                } else if (btn.textContent.includes('Risk') && tabName === 'risks') {
+                    btn.classList.add('active');
+                } else if (btn.textContent.includes('Meetings') && tabName === 'meetings') {
+                    btn.classList.add('active');
+                } else if (btn.textContent.includes('Publication') && tabName === 'publications') {
+                    btn.classList.add('active');
+                } else if (btn.textContent.includes('Resource') && tabName === 'resources') {
+                    btn.classList.add('active');
+                } else if (btn.textContent.includes('Backup') && tabName === 'backup') {
+                    btn.classList.add('active');
+                }
+            });
         }
         
         /* ===== CALCULATE DAYS ELAPSED ===== */
@@ -1095,12 +1239,10 @@
         
         /* ===== UPDATE PROGRESS - DYNAMIC CALCULATION ===== */
         function updateProgress() {
-            // Get values from input fields
-            const obj1 = parseInt(document.getElementById('obj1Input').value) || 0;
-            const obj2 = parseInt(document.getElementById('obj2Input').value) || 0;
-            const obj3 = parseInt(document.getElementById('obj3Input').value) || 0;
+            const obj1 = parseInt(document.getElementById('obj1Input').value) || 100;
+            const obj2 = parseInt(document.getElementById('obj2Input').value) || 60;
+            const obj3 = parseInt(document.getElementById('obj3Input').value) || 70;
             
-            // Update progress bars
             document.getElementById('obj1Bar').style.width = obj1 + '%';
             document.getElementById('obj1Bar').textContent = obj1 + '%';
             
@@ -1110,17 +1252,55 @@
             document.getElementById('obj3Bar').style.width = obj3 + '%';
             document.getElementById('obj3Bar').textContent = obj3 + '%';
             
-            // Calculate overall progress as average of 3 objectives
             const overallProgress = Math.round((obj1 + obj2 + obj3) / 3);
             
-            // Update header
             document.getElementById('overallProgress').textContent = overallProgress + '%';
-            
-            // Update stat box
             document.getElementById('statOverallProgress').textContent = overallProgress + '%';
             
-            // Rebuild Gantt chart with new progress
             buildGanttChart();
+            renderActiveTasks();
+        }
+        
+        /* ===== RENDER ACTIVE TASKS ===== */
+        function renderActiveTasks() {
+            const container = document.getElementById('activeTasksList');
+            container.innerHTML = '';
+            
+            const obj1 = parseInt(document.getElementById('obj1Input').value) || 100;
+            const obj2 = parseInt(document.getElementById('obj2Input').value) || 60;
+            const obj3 = parseInt(document.getElementById('obj3Input').value) || 70;
+            
+            // Update progress values for display
+            const taskProgressMap = {
+                0: obj1,
+                1: obj2,
+                2: obj3,
+                3: obj3,
+                4: 80,
+                5: 60,
+                6: 50
+            };
+            
+            activeTasks.forEach((task, index) => {
+                const progress = taskProgressMap[index];
+                const taskCard = `
+                    <div class="task-card">
+                        <h4>${task.emoji} ${task.name}</h4>
+                        <div class="task-dates">${task.dates}</div>
+                        <div class="task-status">
+                            <span style="font-size: 12px; color: #6c757d;"><strong>Objective:</strong> ${task.objective}</span>
+                            <span class="task-progress">${progress}% Complete</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${progress}%; background: linear-gradient(90deg, #667eea, #764ba2);">${progress}%</div>
+                        </div>
+                        <p style="font-size: 11px; color: #6c757d; margin-top: 10px;">
+                            <strong>Status:</strong> ${task.status}
+                        </p>
+                    </div>
+                `;
+                container.innerHTML += taskCard;
+            });
         }
         
         /* ===== BUILD AND UPDATE MEETINGS ===== */
@@ -1174,13 +1354,8 @@
             upcomingHTML += '</div></div>';
             pastHTML += '</div></div>';
             
-            // Add sections only if they have content
             if (hasUpcoming) container.innerHTML += upcomingHTML;
             if (hasPast) container.innerHTML += pastHTML;
-            
-            if (!hasUpcoming && !hasPast) {
-                container.innerHTML = '<p style="color: #6c757d; font-size: 14px;">No meetings scheduled.</p>';
-            }
         }
         
         /* ===== GANTT CHART DATA ===== */
@@ -1250,7 +1425,6 @@
             const rowsDiv = document.getElementById("ganttRows");
             const monthsDiv = document.getElementById("ganttMonths");
             
-            // Clear and rebuild month headers only once
             if (monthsDiv.children.length === 0) {
                 let m = new Date(projectStart);
                 while (m <= projectEnd) {
@@ -1261,10 +1435,8 @@
                 }
             }
             
-            // Clear rows
             rowsDiv.innerHTML = '';
             
-            // Build task rows with current progress
             const tasks = getTasksWithProgress();
             tasks.forEach(t => {
                 const row = document.createElement("div");
@@ -1291,16 +1463,15 @@
         
         /* ===== INITIALIZE ON PAGE LOAD ===== */
         function initialize() {
-            const daysElapsed = calculateDaysElapsed();
-            document.getElementById('daysElapsed').textContent = daysElapsed;
+            document.getElementById('daysElapsed').textContent = calculateDaysElapsed();
             document.getElementById('lastAccessed').textContent = updateLastAccessed();
             
             buildGanttChart();
             buildMeetings();
+            renderActiveTasks();
             updateProgress();
         }
         
-        // Initialize when page loads
         initialize();
     </script>
 </body>
