@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhD Timeline One-Page Summary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: white;
+            padding: 0;
+        }
+        
+        .page {
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            padding: 20mm;
+            background: white;
+            color: #333;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 12mm;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 8mm;
+        }
+        
+        .header h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 2mm;
+        }
+        
+        .header p {
+            font-size: 11px;
+            color: #6c757d;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10mm;
+            gap: 5mm;
+        }
+        
+        .info-box {
+            flex: 1;
+            padding: 6mm;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 3px solid #667eea;
+            text-align: center;
+        }
+        
+        .info-label {
+            font-size: 9px;
+            color: #6c757d;
+            text-transform: uppercase;
+            margin-bottom: 2mm;
+            font-weight: 600;
+        }
+        
+        .info-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .section {
+            margin-bottom: 12mm;
+        }
+        
+        .section-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 4mm;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .progress-timeline {
+            display: flex;
+            gap: 3mm;
+            margin-bottom: 8mm;
+        }
+        
+        .progress-item {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .progress-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 2mm;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 24px;
+            background: #e9ecef;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 2mm;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+        }
+        
+        .progress-percent {
+            font-size: 11px;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3mm;
+            margin-bottom: 8mm;
+        }
+        
+        .obj-card {
+            padding: 5mm;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            background: #fafbfc;
+        }
+        
+        .obj-title {
+            font-size: 10px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 3mm;
+        }
+        
+        .obj-progress {
+            width: 100%;
+            height: 16px;
+            background: #e9ecef;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 3mm;
+        }
+        
+        .obj-progress-inner {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 8px;
+            font-weight: 700;
+        }
+        
+        .obj-status {
+            font-size: 9px;
+            color: #6c757d;
+            line-height: 1.3;
+        }
+        
+        .risks-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4mm;
+            margin-bottom: 8mm;
+        }
+        
+        .risk-item {
+            padding: 4mm;
+            border-left: 2px solid #f5576c;
+            background: rgba(245, 87, 108, 0.05);
+            border-radius: 2px;
+        }
+        
+        .risk-title {
+            font-size: 9px;
+            font-weight: 700;
+            color: #f5576c;
+            margin-bottom: 2mm;
+        }
+        
+        .risk-text {
+            font-size: 8px;
+            color: #6c757d;
+            line-height: 1.3;
+        }
+        
+        .timeline-bars {
+            display: flex;
+            gap: 2mm;
+            margin-bottom: 8mm;
+            align-items: flex-end;
+        }
+        
+        .bar-item {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .bar-name {
+            font-size: 8px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 2mm;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .bar {
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(90deg, #667eea, #5568d3);
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bar.obj2 {
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+        }
+        
+        .bar.obj3 {
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+        }
+        
+        .bar.other {
+            background: linear-gradient(90deg, #43e97b, #38f9d7);
+        }
+        
+        .bar-percent {
+            color: white;
+            font-size: 8px;
+            font-weight: 700;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .meetings-summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4mm;
+            margin-bottom: 8mm;
+        }
+        
+        .meeting-box {
+            padding: 4mm;
+            background: #f8f9fa;
+            border-radius: 3px;
+            border-left: 2px solid #667eea;
+        }
+        
+        .meeting-title {
+            font-size: 9px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 2mm;
+        }
+        
+        .meeting-text {
+            font-size: 8px;
+            color: #6c757d;
+            line-height: 1.4;
+        }
+        
+        .footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3mm;
+            font-size: 8px;
+            color: #6c757d;
+            border-top: 1px solid #dee2e6;
+            padding-top: 3mm;
+            margin-top: 3mm;
+        }
+        
+        .footer-item {
+            padding: 2mm;
+        }
+        
+        .footer-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1mm;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>🧬 PhD Project Timeline at a Glance</h1>
+            <p>Host-Pathogen Interactions of Mycobacterium tuberculosis Complex | Thesis Submission: 01 September 2026</p>
+        </div>
+        
+        <!-- KEY INFO -->
+        <div class="info-row">
+            <div class="info-box">
+                <div class="info-label">Current Week</div>
+                <div class="info-value">5 / 48</div>
+            </div>
+            <div class="info-box">
+                <div class="info-label">Overall Progress</div>
+                <div class="info-value">52%</div>
+            </div>
+            <div class="info-box">
+                <div class="info-label">Time Remaining</div>
+                <div class="info-value">43 Weeks</div>
+            </div>
+            <div class="info-box">
+                <div class="info-label">Status</div>
+                <div class="info-value">On Track ✓</div>
+            </div>
+        </div>
+        
+        <!-- PROGRESS BY OBJECTIVE -->
+        <div class="section">
+            <div class="section-title">📊 Objective Progress</div>
+            <div class="progress-timeline">
+                <div class="progress-item">
+                    <div class="progress-label">Objective 1<br>Molecular Characterization</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;">100%</div>
+                    </div>
+                    <div class="progress-percent">✅ Complete</div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-label">Objective 2<br>Polymorphisms</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 30%;">30%</div>
+                    </div>
+                    <div class="progress-percent">In Progress</div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-label">Objective 3<br>Host Genomics</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 55%;">55%</div>
+                    </div>
+                    <div class="progress-percent">In Progress</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DETAILED OBJECTIVES -->
+        <div class="section">
+            <div class="section-title">🎯 Task Status Overview</div>
+            <div class="objectives-grid">
+                <div class="obj-card">
+                    <div class="obj-title">Bacterial Load Comparison</div>
+                    <div class="obj-progress">
+                        <div class="obj-progress-inner" style="width: 100%;">100%</div>
+                    </div>
+                    <div class="obj-status">✅ Submitted for peer review (Dec 2025)</div>
+                </div>
+                
+                <div class="obj-card">
+                    <div class="obj-title">Phylogenomics Analysis</div>
+                    <div class="obj-progress">
+                        <div class="obj-progress-inner" style="width: 30%;">30%</div>
+                    </div>
+                    <div class="obj-status">Data analysis ongoing. Target: May 2026</div>
+                </div>
+                
+                <div class="obj-card">
+                    <div class="obj-title">Host Genetics MS 1</div>
+                    <div class="obj-progress">
+                        <div class="obj-progress-inner" style="width: 80%;">80%</div>
+                    </div>
+                    <div class="obj-status">Final revisions. Submit: Mar 31, 2026</div>
+                </div>
+                
+                <div class="obj-card">
+                    <div class="obj-title">Host Genetics MS 2</div>
+                    <div class="obj-progress">
+                        <div class="obj-progress-inner" style="width: 30%; background: #f5576c;">30%</div>
+                    </div>
+                    <div class="obj-status">⚠️ URGENT. Submit: Apr 30, 2026</div>
+                </div>
+                
+                <div class="obj-card">
+                    <div class="obj-title">Thesis Writing</div>
+                    <div class="obj-progress">
+                        <div class="obj-progress-inner" style="width: 40%;">40%</div>
+                    </div>
+                    <div class="obj-status">Chapters 1-2 in progress. Complete: Aug 2026</div>
+                </div>
+                
+                <div class="obj-card">
+                    <div class="obj-title">Literature Review</div>
+                    <div class="obj-progress">
+                        <div class="obj-progress-inner" style="width: 60%;">60%</div>
+                    </div>
+                    <div class="obj-status">Ongoing throughout project. Done: Mar 31, 2026</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CRITICAL RISKS -->
+        <div class="section">
+            <div class="section-title">⚠️ Critical Risks & Mitigations</div>
+            <div class="risks-grid">
+                <div class="risk-item">
+                    <div class="risk-title">🔴 Host Genetics MS 2 Delay</div>
+                    <div class="risk-text"><strong>Risk:</strong> 30% complete, 70% behind schedule.<br><strong>Mitigation:</strong> Allocate 20 hrs/week. Complete by Feb 15. Weekly milestones.</div>
+                </div>
+                
+                <div class="risk-item">
+                    <div class="risk-title">🔴 Peer Review Timeline</div>
+                    <div class="risk-text"><strong>Risk:</strong> MS 1 under review. 3-6 month typical cycle.<br><strong>Mitigation:</strong> Prepare response drafts now. Identify Plan B journals.</div>
+                </div>
+                
+                <div class="risk-item">
+                    <div class="risk-title">🟡 Phylogenomics Processing</div>
+                    <div class="risk-text"><strong>Risk:</strong> Computational bottleneck with large datasets.<br><strong>Mitigation:</strong> Optimize scripts. Coordinate with bioinformatics core.</div>
+                </div>
+                
+                <div class="risk-item">
+                    <div class="risk-title">🟡 Thesis Time Pressure</div>
+                    <div class="risk-text"><strong>Risk:</strong> Writing parallel to data analysis. 6 months to complete.<br><strong>Mitigation:</strong> Progressive chapter writing. Start editing April.</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SUPERVISOR MEETINGS -->
+        <div class="section">
+            <div class="section-title">📅 Supervisor Meetings (Biweekly)</div>
+            <div class="meetings-summary">
+                <div class="meeting-box">
+                    <div class="meeting-title">Schedule</div>
+                    <div class="meeting-text">Every 2 weeks (Thursdays, 10:00 AM)<br>45-60 minutes per meeting<br>10 planned meetings (Feb-Jun)</div>
+                </div>
+                <div class="meeting-box">
+                    <div class="meeting-title">Next Meetings</div>
+                    <div class="meeting-text">🔵 Feb 13: Timeline & MS 2 review<br>🔵 Feb 27: Progress check<br>🔵 Mar 13: MS 2 & Thesis outline</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PUBLICATION STRATEGY -->
+        <div class="section">
+            <div class="section-title">📰 Publication Pipeline</div>
+            <div class="timeline-bars">
+                <div class="bar-item">
+                    <div class="bar-name">MS 1: Bacterial Load</div>
+                    <div class="bar">
+                        <div class="bar-percent">Apr-Jun 2026 (Peer Review)</div>
+                    </div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-name">MS 3A: Host Gen 1</div>
+                    <div class="bar obj3">
+                        <div class="bar-percent">Mar 31, 2026</div>
+                    </div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-name">MS 3B: Host Gen 2</div>
+                    <div class="bar obj2">
+                        <div class="bar-percent">Apr 30, 2026</div>
+                    </div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-name">MS 2: Phylogenomics</div>
+                    <div class="bar other">
+                        <div class="bar-percent">May 31, 2026</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TIME ALLOCATION & KEY METRICS -->
+        <div class="section">
+            <div class="section-title">⏱️ Weekly Time Allocation (Target: 50 hrs/week)</div>
+            <div class="timeline-bars">
+                <div class="bar-item">
+                    <div class="bar-name">Host Gen MS 2</div>
+                    <div class="bar" style="background: linear-gradient(90deg, #f5576c, #fa709a);">
+                        <div class="bar-percent">20h</div>
+                    </div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-name">Phylogenomics</div>
+                    <div class="bar obj2">
+                        <div class="bar-percent">12h</div>
+                    </div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-name">Thesis Writing</div>
+                    <div class="bar obj3">
+                        <div class="bar-percent">12h</div>
+                    </div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-name">Host Gen MS 1</div>
+                    <div class="bar other">
+                        <div class="bar-percent">8h</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-item">
+                <div class="footer-label">✅ Next Milestone</div>
+                Host Genetics MS 2 Complete<br>(Feb 15, 2026)
+            </div>
+            <div class="footer-item">
+                <div class="footer-label">🎯 Key Action</div>
+                Allocate 20 hrs/week to MS 2<br>Establish weekly check-ins
+            </div>
+            <div class="footer-item">
+                <div class="footer-label">📊 Track Progress</div>
+                Monthly reports (last day of month)<br>Biweekly supervisor meetings
+            </div>
+        </div>
+    </div>
+    
+    <!-- Print Button -->
+    <div style="text-align: center; padding: 20px; margin-top: 20px;">
+        <button onclick="window.print()" style="
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        ">🖨️ Print as PDF (Ctrl+P)</button>
+    </div>
+</body>
+</html>
