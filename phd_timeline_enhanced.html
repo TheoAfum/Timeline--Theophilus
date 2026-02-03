@@ -49,8 +49,8 @@
         
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
             padding: 30px;
             background: #f8f9fa;
             border-bottom: 1px solid #e9ecef;
@@ -62,16 +62,16 @@
         
         .info-card label {
             display: block;
-            font-size: 11px;
+            font-size: 10px;
             color: #6c757d;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
         }
         
         .info-card .value {
-            font-size: 16px;
+            font-size: 15px;
             color: #333;
             font-weight: 600;
         }
@@ -202,9 +202,19 @@
             border-right: 1px solid #dee2e6;
         }
         
+        .gantt-bar-background {
+            position: absolute;
+            height: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #e9ecef;
+            border-radius: 3px;
+            opacity: 0.5;
+        }
+        
         .gantt-bar {
             position: absolute;
-            height: 20px;
+            height: 24px;
             top: 50%;
             transform: translateY(-50%);
             border-radius: 3px;
@@ -240,13 +250,6 @@
             background: linear-gradient(90deg, #43e97b, #38f9d7);
         }
         
-        .gantt-bar.meeting {
-            background: linear-gradient(90deg, #fa709a, #fee140);
-            height: 3px;
-            top: 5px;
-            border-radius: 1px;
-        }
-        
         .legend {
             display: flex;
             flex-wrap: wrap;
@@ -267,12 +270,6 @@
             width: 18px;
             height: 18px;
             border-radius: 3px;
-        }
-        
-        .chart-container {
-            position: relative;
-            height: 400px;
-            margin-bottom: 40px;
         }
         
         .objectives-grid {
@@ -473,10 +470,6 @@
             text-align: right;
         }
         
-        .publication-timeline {
-            margin-top: 20px;
-        }
-        
         .pub-item {
             padding: 15px;
             margin-bottom: 12px;
@@ -502,44 +495,6 @@
             font-size: 11px;
             color: #667eea;
             font-weight: 600;
-        }
-        
-        .monthly-report-template {
-            background: #f8f9fa;
-            border: 2px dashed #dee2e6;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .monthly-report-template h4 {
-            color: #333;
-            margin-bottom: 12px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-        
-        .report-section {
-            margin-bottom: 15px;
-        }
-        
-        .report-section label {
-            display: block;
-            font-weight: 600;
-            color: #667eea;
-            font-size: 11px;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
-        
-        .report-content {
-            font-size: 12px;
-            color: #6c757d;
-            line-height: 1.6;
-            padding: 8px;
-            background: white;
-            border-radius: 4px;
-            min-height: 60px;
         }
         
         .backup-grid {
@@ -596,33 +551,6 @@
             letter-spacing: 0.5px;
         }
         
-        .milestone {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 12px;
-            background: #f8f9fa;
-            border-left: 4px solid #667eea;
-            margin-bottom: 10px;
-            border-radius: 4px;
-        }
-        
-        .milestone-icon {
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-        
-        .milestone-content h4 {
-            color: #333;
-            margin-bottom: 3px;
-            font-size: 13px;
-        }
-        
-        .milestone-content p {
-            color: #6c757d;
-            font-size: 11px;
-        }
-        
         @media (max-width: 768px) {
             .gantt {
                 grid-template-columns: 200px 1fr;
@@ -660,6 +588,14 @@
                 <div class="value">01 Jan 2026</div>
             </div>
             <div class="info-card">
+                <label>Days Elapsed</label>
+                <div class="value" id="daysElapsed">33 days</div>
+            </div>
+            <div class="info-card">
+                <label>Last Accessed</label>
+                <div class="value" id="lastAccessed" style="font-size: 13px;">Today</div>
+            </div>
+            <div class="info-card">
                 <label>Current Progress</label>
                 <div class="value">Week 5/48</div>
             </div>
@@ -669,7 +605,7 @@
             </div>
             <div class="info-card">
                 <label>Overall Progress</label>
-                <div class="value">52%</div>
+                <div class="value">62%</div>
             </div>
         </div>
         
@@ -681,7 +617,6 @@
             <button class="tab" onclick="switchTab('publications')">📰 Publication Strategy</button>
             <button class="tab" onclick="switchTab('resources')">⏱️ Resource Allocation</button>
             <button class="tab" onclick="switchTab('backup')">💡 Backup Objectives</button>
-            <button class="tab" onclick="switchTab('monthly')">📋 Monthly Reports</button>
         </div>
         
         <!-- GANTT CHART TAB -->
@@ -692,7 +627,7 @@
                         <div class="gantt-label-header">Task</div>
                         <div class="gantt-label">Bacterial Load Comparison</div>
                         <div class="gantt-label">Phylogenomics & Polymorphisms</div>
-                        <div class="gantt-label">Manuscript (Bacteria polymorphisms)</div>
+                        <div class="gantt-label">Manuscript (Polymorphisms)</div>
                         <div class="gantt-label">Host Genetics MS 1</div>
                         <div class="gantt-label">Host Genetics MS 2</div>
                         <div class="gantt-label">Lit Review & Intro</div>
@@ -701,18 +636,82 @@
                     
                     <div class="gantt-timeline">
                         <div class="gantt-timeline-header" id="weekHeader"></div>
-                        <div class="gantt-row"><div class="gantt-bar-container" style="grid-column: span 1;"><div class="gantt-bar objective1" style="width: 95%; left: 2.5%;">100%</div></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div></div>
-                        <div class="gantt-row"><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"><div class="gantt-bar objective2" style="width: 95%; left: 2.5%;">30%</div></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div></div>
-                        <div class="gantt-row"><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"><div class="gantt-bar objective2" style="width: 95%; left: 2.5%;">100%</div></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div></div>
-                        <div class="gantt-row"><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"><div class="gantt-bar objective3" style="width: 90%; left: 5%;">80%</div></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div></div>
-                        <div class="gantt-row"><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"><div class="gantt-bar objective3" style="width: 50%; left: 25%;">30%</div></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div></div>
-                        <div class="gantt-row"><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"><div class="gantt-bar other" style="width: 95%; left: 2.5%;">60%</div></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div></div>
-                        <div class="gantt-row"><div class="gantt-bar-container"><div class="gantt-bar other" style="width: 95%; left: 2.5%;">40%</div></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div></div>
+                        
+                        <!-- Task 1: Bacterial Load (100% across 9 weeks, weeks 1-9) -->
+                        <div class="gantt-row">
+                            <div class="gantt-bar-container" style="grid-column: span 9;">
+                                <div class="gantt-bar-background" style="width: 100%; left: 0%;"></div>
+                                <div class="gantt-bar objective1" style="width: 100%; left: 0%;">✓ 100%</div>
+                            </div>
+                            <div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div>
+                        </div>
+                        
+                        <!-- Task 2: Phylogenomics (Total duration weeks 10-30, 60% complete) -->
+                        <div class="gantt-row">
+                            <div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div>
+                            <div class="gantt-bar-container" style="grid-column: span 21;">
+                                <div class="gantt-bar-background" style="width: 100%; left: 0%;"></div>
+                                <div class="gantt-bar objective2" style="width: 60%; left: 0%;">60%</div>
+                            </div>
+                            <div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div>
+                        </div>
+                        
+                        <!-- Task 3: Manuscript Prep (weeks 10-30, 100% complete) -->
+                        <div class="gantt-row">
+                            <div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div>
+                            <div class="gantt-bar-container" style="grid-column: span 21;">
+                                <div class="gantt-bar-background" style="width: 100%; left: 0%;"></div>
+                                <div class="gantt-bar objective2" style="width: 100%; left: 0%;">✓ 100%</div>
+                            </div>
+                            <div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div>
+                        </div>
+                        
+                        <!-- Task 4: Host Genetics MS 1 (weeks 11-31, 80% complete) -->
+                        <div class="gantt-row">
+                            <div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div>
+                            <div class="gantt-bar-container" style="grid-column: span 21;">
+                                <div class="gantt-bar-background" style="width: 100%; left: 0%;"></div>
+                                <div class="gantt-bar objective3" style="width: 80%; left: 0%;">80%</div>
+                            </div>
+                            <div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div>
+                        </div>
+                        
+                        <!-- Task 5: Host Genetics MS 2 (weeks 5-35, 60% complete) -->
+                        <div class="gantt-row">
+                            <div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div>
+                            <div class="gantt-bar-container" style="grid-column: span 31;">
+                                <div class="gantt-bar-background" style="width: 100%; left: 0%;"></div>
+                                <div class="gantt-bar objective3" style="width: 60%; left: 0%;">60%</div>
+                            </div>
+                            <div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div>
+                        </div>
+                        
+                        <!-- Task 6: Literature Review (weeks 8-36, 80% complete) -->
+                        <div class="gantt-row">
+                            <div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div>
+                            <div class="gantt-bar-container" style="grid-column: span 29;">
+                                <div class="gantt-bar-background" style="width: 100%; left: 0%;"></div>
+                                <div class="gantt-bar other" style="width: 80%; left: 0%;">80%</div>
+                            </div>
+                            <div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div><div class="gantt-bar-container"></div>
+                        </div>
+                        
+                        <!-- Task 7: Thesis Writing (weeks 1-48, 60% complete) -->
+                        <div class="gantt-row">
+                            <div class="gantt-bar-container" style="grid-column: span 48;">
+                                <div class="gantt-bar-background" style="width: 100%; left: 0%;"></div>
+                                <div class="gantt-bar other" style="width: 60%; left: 0%;">60%</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <div style="padding: 30px; background: white;">
+                <h3 style="margin-bottom: 20px; color: #333; font-weight: 600;">📖 How to Read This Chart</h3>
+                <p style="font-size: 12px; color: #6c757d; margin-bottom: 15px;">
+                    Each task shows a light background bar spanning the entire duration of the work. The darker colored bar shows the percentage of work completed so far.
+                </p>
                 <div class="legend">
                     <div class="legend-item">
                         <div class="legend-color" style="background: linear-gradient(90deg, #667eea, #5568d3);"></div>
@@ -746,7 +745,7 @@
                     <div class="stat-label">Active Tasks</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number">52%</div>
+                    <div class="stat-number">62%</div>
                     <div class="stat-label">Overall Progress</div>
                 </div>
                 <div class="stat-box">
@@ -763,7 +762,7 @@
                     <div class="progress-bar">
                         <div class="progress-fill" style="width: 100%;">100%</div>
                     </div>
-                    <p style="font-size: 11px; color: #6c757d;">✅ Manuscript submitted for peer review. Awaiting reviewer comments.</p>
+                    <p style="font-size: 11px; color: #6c757d;">✅ Manuscript submitted for peer review (Elsevier Tuberculosis).</p>
                 </div>
                 
                 <div class="objective-card">
@@ -771,7 +770,7 @@
                     <div class="progress-bar">
                         <div class="progress-fill" style="width: 60%;">60%</div>
                     </div>
-                    <p style="font-size: 11px; color: #6c757d;">Phylogenomics analysis ongoing. Manuscript preparation complete (100%).</p>
+                    <p style="font-size: 11px; color: #6c757d;">Phylogenomics analysis in progress with Prof. Sebastian Gagneux. More sequences being processed.</p>
                 </div>
                 
                 <div class="objective-card">
@@ -779,7 +778,7 @@
                     <div class="progress-bar">
                         <div class="progress-fill" style="width: 70%;">70%</div>
                     </div>
-                    <p style="font-size: 11px; color: #6c757d;">MS 1 at 80%. MS 2 needs accelerated focus (currently 60%).</p>
+                    <p style="font-size: 11px; color: #6c757d;">MS 1 at 80%. MS 2 data analysis complete, needs manuscript revisions.</p>
                 </div>
                 
                 <div class="objective-card">
@@ -787,7 +786,7 @@
                     <div class="progress-bar">
                         <div class="progress-fill" style="width: 50%;">50%</div>
                     </div>
-                    <p style="font-size: 11px; color: #6c757d;">Literature review 80% done. Thesis writing ongoing. General discussion section to be written by July</p>
+                    <p style="font-size: 11px; color: #6c757d;">Literature review 80% complete. Thesis writing ongoing. Discussion chapter for July.</p>
                 </div>
             </div>
         </div>
@@ -799,52 +798,45 @@
             <div class="risk-grid">
                 <div class="risk-card high">
                     <div class="risk-level high">🔴 HIGH</div>
-                    <h4>Host Genetics MS 2 Timeline Slippage</h4>
-                    <div class="risk-description">MS 2 is may not be published. It should however be shared by ending of March</div>
-                    <div class="mitigation">✓ Action: Allocate dedicated 20 hrs/week. Request co-author assistance. Break into micro-milestones (weekly targets).</div>
+                    <h4>Host Genetics MS 2 Manuscript Timeline</h4>
+                    <div class="risk-description">Analysis complete but manuscript revision needed by end of August for September submission</div>
+                    <div class="mitigation">✓ Action: Schedule 2-3 hours weekly for manuscript polishing. Circulate to co-authors by July 31.</div>
                 </div>
                 
                 <div class="risk-card high">
                     <div class="risk-level high">🔴 HIGH</div>
-                    <h4>Peer Review Delays (Manuscript 1)</h4>
-                    <div class="risk-description">Manuscript submitted but peer review timelines unpredictable. Typical 3-6 month review cycle could delay completion.</div>
-                    <div class="mitigation">✓ Action: Prepare response letter template now. Have revision drafts ready. Identify alternative journals (Plan B).</div>
+                    <h4>Peer Review Timeline (MS 1)</h4>
+                    <div class="risk-description">Manuscript under peer review. Typical 3-6 month cycle with revisions may extend past July</div>
+                    <div class="mitigation">✓ Action: Prepare response templates. Have revision drafts ready. Monitor journal status monthly.</div>
                 </div>
                 
                 <div class="risk-card medium">
                     <div class="risk-level medium">🟡 MEDIUM</div>
                     <h4>Phylogenomics Data Processing</h4>
-                    <div class="risk-description">Share trees with Prof. Sebastian Gagneux. More sequences 51 are currently being done</div>
-                    <div class="mitigation">✓ Action: Optimize scripts for efficiency. Coordinate with bioinformatics core facility. Establish weekly progress targets.</div>
+                    <div class="risk-description">51 additional sequences being processed. Timeline dependent on Prof. Gagneux's group progress</div>
+                    <div class="mitigation">✓ Action: Weekly coordination with Prof. Gagneux. Prepare manuscript outline in parallel.</div>
                 </div>
                 
                 <div class="risk-card medium">
                     <div class="risk-level medium">🟡 MEDIUM</div>
-                    <h4>Thesis Writing Time Crunch</h4>
-                    <div class="risk-description">Thesis writing (60% complete) runs parallel to data analysis. 6 months to complete full thesis with formatting.</div>
-                    <div class="mitigation">✓ Action: Write chapters progressively. Use template early. Monthly writing sprints. Start editing April onwards.</div>
+                    <h4>Thesis Writing Acceleration Needed</h4>
+                    <div class="risk-description">Currently 60% complete. Need 80% by June 30 to allow final month for editing</div>
+                    <div class="mitigation">✓ Action: Increase thesis writing to 15 hrs/week Apr-Jun. Complete Chapter 4 discussion by July 15.</div>
                 </div>
                 
                 <div class="risk-card low">
                     <div class="risk-level low">🟢 LOW</div>
-                    <h4>Literature Review Depth</h4>
-                    <div class="risk-description">Literature review at 80%. Risk of missing recent publications on MTBC interactions.</div>
-                    <div class="mitigation">✓ Action: Set monthly PubMed alerts. Weekly literature scans (2 hrs). Integrate latest findings into chapters.</div>
+                    <h4>Literature Review Currency</h4>
+                    <div class="risk-description">At 80%. Some new MTBC publications emerging regularly</div>
+                    <div class="mitigation">✓ Action: Monthly PubMed scans. Integrate key findings through June. Final update before submission.</div>
                 </div>
                 
                 <div class="risk-card low">
                     <div class="risk-level low">🟢 LOW</div>
                     <h4>Supervisor Feedback Integration</h4>
-                    <div class="risk-description">Biweekly meetings provide regular feedback, but integration takes time.</div>
-                    <div class="mitigation">✓ Action: Create feedback log. Track all comments. Allocate 2-3 hours post-meeting for revisions.</div>
+                    <div class="risk-description">Biweekly meetings generating regular feedback needing incorporation</div>
+                    <div class="mitigation">✓ Action: Dedicated 3-hour post-meeting revision window. Maintain feedback tracking document.</div>
                 </div>
-            </div>
-            
-            <div style="margin-top: 30px; padding: 18px; background: #cce5ff; border-radius: 6px; border-left: 4px solid #667eea;">
-                <h4 style="color: #004085; margin-bottom: 8px;">🎯 Critical Action Items (Next 2 Weeks)</h4>
-                <p style="color: #004085; font-size: 12px; margin-bottom: 6px;"><strong>1. Host Genetics MS 2:</strong> Increase effort to 20 hrs/week minimum. Complete data analysis by Feb 15.</p>
-                <p style="color: #004085; font-size: 12px; margin-bottom: 6px;"><strong>2. Phylogenomics:</strong> Schedule with bioinformatics team. Establish clear weekly milestones.</p>
-                <p style="color: #004085; font-size: 12px;"><strong>3. Thesis Structure:</strong> Create detailed outline for Chapters 1-4 before end of February.</p>
             </div>
         </div>
         
@@ -852,62 +844,49 @@
         <div id="meetings" class="tab-content">
             <h3 style="margin-bottom: 20px; color: #333; font-weight: 600;">Biweekly Supervisor Meeting Schedule</h3>
             
-            <p style="font-size: 12px; color: #6c757d; margin-bottom: 20px;">📅 Meetings every 2 weeks (Thursdays, 10:00 AM) | Duration: 45-60 minutes</p>
+            <p style="font-size: 12px; color: #6c757d; margin-bottom: 20px;">📅 Every 2 weeks | Duration: 45-60 minutes</p>
             
             <div class="meeting-timeline">
                 <div class="meeting-row">
-                    <div class="meeting-date">🔵 Week 5 (Feb 13)</div>
-                    <div class="meeting-agenda"><strong>Meeting 1:</strong> Overview of timeline, discuss Host Genetics MS 2 acceleration, phylogenomics progress update.</div>
+                    <div class="meeting-date">🔵 Feb 13</div>
+                    <div class="meeting-agenda"><strong>Meeting 1:</strong> Timeline overview, MS 2 manuscript plan, phylogenomics update with Prof. Gagneux coordination.</div>
                 </div>
                 <div class="meeting-row">
-                    <div class="meeting-date">🔵 Week 7 (Feb 27)</div>
-                    <div class="meeting-agenda"><strong>Meeting 2:</strong> Host Genetics MS 2 milestone check. Review phylogenomics preliminary results. Discuss thesis outline.</div>
+                    <div class="meeting-date">🔵 Feb 27</div>
+                    <div class="meeting-agenda"><strong>Meeting 2:</strong> MS 2 progress check. Thesis outline review. Phylogenomics data status.</div>
                 </div>
                 <div class="meeting-row">
-                    <div class="meeting-date">🔵 Week 9 (Mar 13)</div>
-                    <div class="meeting-agenda"><strong>Meeting 3:</strong> MS 2 draft review. Literature review integration. Thesis Chapter 1 draft submission.</div>
+                    <div class="meeting-date">🔵 Mar 13</div>
+                    <div class="meeting-agenda"><strong>Meeting 3:</strong> MS 2 draft discussion. Thesis Chapter 1-2 review. Literature integration plan.</div>
                 </div>
                 <div class="meeting-row">
-                    <div class="meeting-date">🔵 Week 11 (Mar 27)</div>
-                    <div class="meeting-agenda"><strong>Meeting 4:</strong> Phylogenomics manuscript preparation begins. Chapters 2-3 outline. MS 1 reviewer feedback discussion.</div>
+                    <div class="meeting-date">🔵 Mar 27</div>
+                    <div class="meeting-agenda"><strong>Meeting 4:</strong> Phylogenomics manuscript outline. Chapters 2-3 feedback. MS 1 reviewer status.</div>
                 </div>
                 <div class="meeting-row">
-                    <div class="meeting-date">🔵 Week 13 (Apr 10)</div>
-                    <div class="meeting-agenda"><strong>Meeting 5:</strong> Manuscript 1 revision planning (if reviews received). All 3 objectives progress assessment. Chapter writing schedule.</div>
+                    <div class="meeting-date">🔵 Apr 10</div>
+                    <div class="meeting-agenda"><strong>Meeting 5:</strong> MS 1 revisions planning (if reviews ready). All 3 objectives assessment. Thesis writing acceleration.</div>
                 </div>
                 <div class="meeting-row">
-                    <div class="meeting-date">🔵 Week 15 (Apr 24)</div>
-                    <div class="meeting-agenda"><strong>Meeting 6:</strong> Chapters 2-3 draft reviews. Phylogenomics MS status. Thesis coherence assessment.</div>
+                    <div class="meeting-date">🔵 Apr 24</div>
+                    <div class="meeting-agenda"><strong>Meeting 6:</strong> Chapters 2-3 draft reviews. Phylogenomics MS status. Thesis coherence check.</div>
                 </div>
                 <div class="meeting-row">
-                    <div class="meeting-date">🔵 Week 17 (May 8)</div>
-                    <div class="meeting-agenda"><strong>Meeting 7:</strong> Integrate all manuscripts into thesis. Chapter 4 (Discussion) outline. Publication timeline finalization.</div>
+                    <div class="meeting-date">🔵 May 8</div>
+                    <div class="meeting-agenda"><strong>Meeting 7:</strong> Integrate manuscripts into thesis. Chapter 4 outline. Final publication strategy.</div>
                 </div>
                 <div class="meeting-row">
-                    <div class="meeting-date">🔵 Week 19 (May 22)</div>
-                    <div class="meeting-agenda"><strong>Meeting 8:</strong> Chapters 3-4 drafts. Address reviewer feedback from all manuscripts. Thesis formatting review.</div>
+                    <div class="meeting-date">🔵 May 22</div>
+                    <div class="meeting-agenda"><strong>Meeting 8:</strong> Chapters 3-4 review. Manuscript feedback integration. Thesis formatting.</div>
                 </div>
                 <div class="meeting-row">
-                    <div class="meeting-date">🔵 Week 21 (Jun 5)</div>
-                    <div class="meeting-agenda"><strong>Meeting 9:</strong> Full thesis draft review. Submission readiness assessment. Final edits planning.</div>
+                    <div class="meeting-date">🔵 Jun 5</div>
+                    <div class="meeting-agenda"><strong>Meeting 9:</strong> Full thesis draft review. Submission readiness. Final edits planning.</div>
                 </div>
                 <div class="meeting-row">
-                    <div class="meeting-date">🔵 Week 23 (Jun 19)</div>
-                    <div class="meeting-agenda"><strong>Meeting 10:</strong> Address final supervisor comments. Printing/submission logistics. Celebration of milestones!</div>
+                    <div class="meeting-date">🔵 Jun 19</div>
+                    <div class="meeting-agenda"><strong>Meeting 10:</strong> Final supervisor feedback. Printing/submission logistics.</div>
                 </div>
-                <div class="meeting-row">
-                    <div class="meeting-date">🔵 Week 25+ (Jul-Aug)</div>
-                    <div class="meeting-agenda"><strong>Meetings 11+:</strong> Post-submission support. Viva prep. Manuscript submission strategy for remaining papers.</div>
-                </div>
-            </div>
-            
-            <div style="margin-top: 30px; padding: 18px; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #667eea;">
-                <h4 style="color: #333; margin-bottom: 10px;">📋 Suggested Meeting Prep Checklist</h4>
-                <p style="font-size: 11px; color: #6c757d; margin-bottom: 5px;">☐ Update progress document (48 hrs before meeting)</p>
-                <p style="font-size: 11px; color: #6c757d; margin-bottom: 5px;">☐ Prepare 1-2 key challenges/questions</p>
-                <p style="font-size: 11px; color: #6c757d; margin-bottom: 5px;">☐ Share draft materials in advance (if applicable)</p>
-                <p style="font-size: 11px; color: #6c757d; margin-bottom: 5px;">☐ Document action items from previous meeting</p>
-                <p style="font-size: 11px; color: #6c757d;">☐ Track feedback in dedicated notebook/file</p>
             </div>
         </div>
         
@@ -915,92 +894,44 @@
         <div id="publications" class="tab-content">
             <h3 style="margin-bottom: 20px; color: #333; font-weight: 600;">Publication Strategy & Timeline</h3>
             
-            <div class="publication-timeline">
-                <div class="pub-item">
-                    <div class="pub-title">📰 Manuscript 1: Bacterial Load Comparison (MTBC)</div>
-                    <div class="pub-timeline"><strong>Status:</strong> Submitted (Dec 2025) | <strong>Expected Review:</strong> 4-6 months (Apr-Jun 2026)</div>
-                    <div class="pub-status">🔄 Current: Under Peer Review</div>
-                    <div style="margin-top: 8px; font-size: 11px; color: #6c757d;">
-                        <strong>Target Journal:</strong> Elsevier Tuberculosis<br>
-                        <strong>Revision Timeline:</strong> Feb-Mar: Minor revisions, April: Major revisions (if needed)<br>
-                        <strong>Expected Publication:</strong> May 2026
-                    </div>
-                </div>
-                
-                <div class="pub-item">
-                    <div class="pub-title">📰 Manuscript 2: Phylogenomics & Polymorphisms</div>
-                    <div class="pub-timeline"><strong>Status:</strong> In Preparation (May 2025) | <strong>Target Submission:</strong> May 2026</div>
-                    <div class="pub-status">✍️ Current: Data Analysis & Writing</div>
-                    <div style="margin-top: 8px; font-size: 11px; color: #6c757d;">
-                        <strong>Target Journal:</strong> Genome Biology / PLoS Pathogens<br>
-                        <strong>Submission Window:</strong> May 15-31, 2026<br>
-                        <strong>Expected Acceptance:</strong> Oct-Nov 2026
-                    </div>
-                </div>
-                
-                <div class="pub-item">
-                    <div class="pub-title">📰 Manuscript 3A: Host Genetics MS 1 (Case-Case GWAS)</div>
-                    <div class="pub-timeline"><strong>Status:</strong> In Progress (80%) | <strong>Target Submission:</strong> Mar 2026</div>
-                    <div class="pub-status">✍️ Current: Final Analysis & Revisions</div>
-                    <div style="margin-top: 8px; font-size: 11px; color: #6c757d;">
-                        <strong>Target Journal:</strong> PLoS Genetics / Nature Communications<br>
-                        <strong>Submission Window:</strong> Mar 15-31, 2026<br>
-                        <strong>Expected Acceptance:</strong> Jul-Aug 2026
-                    </div>
-                </div>
-                
-                <div class="pub-item">
-                    <div class="pub-title">📰 Manuscript 3B: Host Genetics MS 2 (Case-Control GWAS)</div>
-                    <div class="pub-timeline"><strong>Status:</strong> URGENT (30%) | <strong>Target Submission:</strong> Apr 2026</div>
-                    <div class="pub-status">⚠️ Current: Accelerated Data Analysis Needed</div>
-                    <div style="margin-top: 8px; font-size: 11px; color: #6c757d;">
-                        <strong>Target Journal:</strong> American Journal of Human Genetics / BMC Genomics<br>
-                        <strong>Submission Window:</strong> September 1-30, 2026 (CRITICAL DEADLINE)<br>
-                        <strong>Expected Acceptance:</strong> Oct-Nov 2026
-                    </div>
+            <div class="pub-item">
+                <div class="pub-title">📰 Manuscript 1: Bacterial Load Comparison (MTBC)</div>
+                <div class="pub-timeline"><strong>Status:</strong> Submitted (Dec 2025) | <strong>Expected Review:</strong> Apr-Jun 2026</div>
+                <div class="pub-status">🔄 Under Peer Review (Elsevier Tuberculosis)</div>
+                <div style="margin-top: 8px; font-size: 11px; color: #6c757d;">
+                    <strong>Target Publication:</strong> May 2026<br>
+                    <strong>Revision Timeline:</strong> Upon reviewer feedback
                 </div>
             </div>
             
-            <div style="margin-top: 30px; padding: 18px; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #667eea;">
-                <h4 style="color: #333; margin-bottom: 10px;">📊 Publication Timeline Overview</h4>
-                <table style="width: 100%; font-size: 11px; color: #6c757d;">
-                    <tr style="border-bottom: 1px solid #dee2e6;">
-                        <td style="padding: 6px;"><strong>Phase</strong></td>
-                        <td style="padding: 6px;"><strong>Manuscript</strong></td>
-                        <td style="padding: 6px;"><strong>Target Date</strong></td>
-                        <td style="padding: 6px;"><strong>Status</strong></td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #dee2e6; background: #f8f9fa;">
-                        <td style="padding: 6px;">Current</td>
-                        <td style="padding: 6px;">MS 1 (Peer Review)</td>
-                        <td style="padding: 6px;">Apr-Jun 2026</td>
-                        <td style="padding: 6px;">🔄 In Review</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #dee2e6;">
-                        <td style="padding: 6px;">Q1 2026</td>
-                        <td style="padding: 6px;">MS 3A (Host Genetics 1)</td>
-                        <td style="padding: 6px;">Mar 31, 2026</td>
-                        <td style="padding: 6px;">✍️ Final revisions</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #dee2e6; background: #f8f9fa;">
-                        <td style="padding: 6px;">Q2 2026</td>
-                        <td style="padding: 6px;">MS 3B (Host Genetics 2)</td>
-                        <td style="padding: 6px;">Apr 30, 2026</td>
-                        <td style="padding: 6px;">⚠️ CRITICAL</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #dee2e6;">
-                        <td style="padding: 6px;">Q2 2026</td>
-                        <td style="padding: 6px;">MS 2 (Phylogenomics)</td>
-                        <td style="padding: 6px;">May 31, 2026</td>
-                        <td style="padding: 6px;">✍️ In prep</td>
-                    </tr>
-                    <tr style="background: #f8f9fa;">
-                        <td style="padding: 6px;">Q3 2026</td>
-                        <td style="padding: 6px;">All Manuscripts</td>
-                        <td style="padding: 6px;">Aug-Sep 2026</td>
-                        <td style="padding: 6px;">✅ Targeted publication</td>
-                    </tr>
-                </table>
+            <div class="pub-item">
+                <div class="pub-title">📰 Manuscript 2: Phylogenomics & Polymorphisms</div>
+                <div class="pub-timeline"><strong>Status:</strong> Data Analysis | <strong>Target Submission:</strong> May 2026</div>
+                <div class="pub-status">✍️ Manuscript Writing with Prof. Sebastian Gagneux</div>
+                <div style="margin-top: 8px; font-size: 11px; color: #6c757d;">
+                    <strong>Target Journal:</strong> Genome Biology / PLoS Pathogens<br>
+                    <strong>Expected Acceptance:</strong> Oct-Nov 2026
+                </div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-title">📰 Manuscript 3A: Host Genetics MS 1 (Case-Case GWAS)</div>
+                <div class="pub-timeline"><strong>Status:</strong> 80% Complete | <strong>Target Submission:</strong> Mar 2026</div>
+                <div class="pub-status">✍️ Final Analysis & Revisions</div>
+                <div style="margin-top: 8px; font-size: 11px; color: #6c757d;">
+                    <strong>Target Journal:</strong> PLoS Genetics / Nature Communications<br>
+                    <strong>Expected Acceptance:</strong> Jul-Aug 2026
+                </div>
+            </div>
+            
+            <div class="pub-item">
+                <div class="pub-title">📰 Manuscript 3B: Host Genetics MS 2 (Case-Control GWAS)</div>
+                <div class="pub-timeline"><strong>Status:</strong> Analysis Complete | <strong>Target Submission:</strong> August 2026</div>
+                <div class="pub-status">✍️ Manuscript Finalization & Circulation</div>
+                <div style="margin-top: 8px; font-size: 11px; color: #6c757d;">
+                    <strong>Target Journal:</strong> American Journal of Human Genetics / BMC Genomics<br>
+                    <strong>Critical Deadline:</strong> August 31, 2026 (must finalize before thesis submission)
+                </div>
             </div>
         </div>
         
@@ -1008,7 +939,7 @@
         <div id="resources" class="tab-content">
             <h3 style="margin-bottom: 20px; color: #333; font-weight: 600;">Weekly Time & Resource Allocation</h3>
             
-            <p style="font-size: 12px; color: #6c757d; margin-bottom: 20px;">⏱️ Target: 50 hours/week | Includes lab work, analysis, writing, and meetings</p>
+            <p style="font-size: 12px; color: #6c757d; margin-bottom: 20px;">⏱️ Target: 50 hours/week | Lab work, analysis, writing, and meetings</p>
             
             <table class="resource-table">
                 <thead>
@@ -1016,22 +947,22 @@
                         <th>Task/Objective</th>
                         <th>Current Hrs/Week</th>
                         <th>Target Hrs/Week</th>
-                        <th>Feb Target</th>
+                        <th>Priority</th>
                         <th>Notes</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Host Genetics MS 2 (PRIORITY)</strong></td>
+                        <td><strong>Host Genetics MS 2 (Manuscript)</strong></td>
                         <td>
                             <div class="resource-bar">
                                 <div class="resource-fill"><div class="resource-fill-inner" style="width: 60%;"></div></div>
-                                <div class="resource-num">6 hrs</div>
+                                <div class="resource-num">3 hrs</div>
                             </div>
                         </td>
-                        <td><strong style="color: #f5576c;">20 hrs</strong></td>
-                        <td>Complete by Feb 15</td>
-                        <td>🔴 URGENT - Behind schedule</td>
+                        <td><strong style="color: #667eea;">5 hrs</strong></td>
+                        <td>🔴 HIGH</td>
+                        <td>Finalize by August 31</td>
                     </tr>
                     <tr>
                         <td><strong>Phylogenomics Analysis</strong></td>
@@ -1041,306 +972,116 @@
                                 <div class="resource-num">8 hrs</div>
                             </div>
                         </td>
-                        <td>12 hrs</td>
-                        <td>Accelerate processing</td>
-                        <td>Need bioinformatics support</td>
+                        <td>10 hrs</td>
+                        <td>🟡 MEDIUM</td>
+                        <td>Coordinate with Prof. Gagneux</td>
                     </tr>
                     <tr>
                         <td><strong>Host Genetics MS 1</strong></td>
                         <td>
                             <div class="resource-bar">
                                 <div class="resource-fill"><div class="resource-fill-inner" style="width: 80%;"></div></div>
-                                <div class="resource-num">10 hrs</div>
+                                <div class="resource-num">8 hrs</div>
                             </div>
                         </td>
-                        <td>8 hrs</td>
-                        <td>Finalization only</td>
-                        <td>✅ On track (80%)</td>
+                        <td>6 hrs</td>
+                        <td>🟢 LOW</td>
+                        <td>Finalization mode</td>
                     </tr>
                     <tr>
-                        <td><strong>Thesis Writing & Revisions</strong></td>
+                        <td><strong>Thesis Writing</strong></td>
                         <td>
                             <div class="resource-bar">
-                                <div class="resource-fill"><div class="resource-fill-inner" style="width: 30%;"></div></div>
-                                <div class="resource-num">6 hrs</div>
+                                <div class="resource-fill"><div class="resource-fill-inner" style="width: 40%;"></div></div>
+                                <div class="resource-num">12 hrs</div>
                             </div>
                         </td>
-                        <td>12 hrs</td>
-                        <td>Increase by 50%</td>
-                        <td>Chapters 1-2 writing sprint</td>
+                        <td>15 hrs</td>
+                        <td>🔴 HIGH</td>
+                        <td>Accelerate Apr-Jun</td>
                     </tr>
                     <tr>
                         <td><strong>Literature Review</strong></td>
                         <td>
                             <div class="resource-bar">
-                                <div class="resource-fill"><div class="resource-fill-inner" style="width: 50%;"></div></div>
+                                <div class="resource-fill"><div class="resource-fill-inner" style="width: 60%;"></div></div>
                                 <div class="resource-num">3 hrs</div>
                             </div>
                         </td>
                         <td>4 hrs</td>
-                        <td>Weekly scans + integration</td>
-                        <td>Ongoing throughout project</td>
+                        <td>🟡 MEDIUM</td>
+                        <td>Ongoing through June</td>
                     </tr>
                     <tr>
                         <td><strong>Supervisor Meetings & Admin</strong></td>
                         <td>
                             <div class="resource-bar">
-                                <div class="resource-fill"><div class="resource-fill-inner" style="width: 40%;"></div></div>
+                                <div class="resource-fill"><div class="resource-fill-inner" style="width: 50%;"></div></div>
                                 <div class="resource-num">2 hrs</div>
                             </div>
                         </td>
                         <td>3 hrs</td>
-                        <td>Meeting + prep + notes</td>
-                        <td>Biweekly formal meetings</td>
+                        <td>🟢 LOW</td>
+                        <td>Biweekly 1-hr meetings</td>
                     </tr>
                     <tr style="background: #f8f9fa;">
-                        <td><strong>Other & Buffer</strong></td>
+                        <td><strong>Buffer & Contingency</strong></td>
                         <td>
                             <div class="resource-bar">
-                                <div class="resource-fill"><div class="resource-fill-inner" style="width: 75%;"></div></div>
-                                <div class="resource-num">15 hrs</div>
+                                <div class="resource-fill"><div class="resource-fill-inner" style="width: 50%;"></div></div>
+                                <div class="resource-num">14 hrs</div>
                             </div>
                         </td>
-                        <td>11 hrs</td>
-                        <td>Unexpected issues</td>
-                        <td>Contingency & flexibility</td>
+                        <td>7 hrs</td>
+                        <td>🟢 LOW</td>
+                        <td>Flexibility for issues</td>
                     </tr>
                 </tbody>
             </table>
-            
-            <div style="margin-top: 30px; padding: 18px; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #667eea;">
-                <h4 style="color: #333; margin-bottom: 10px;">💡 Resource Optimization Tips</h4>
-                <p style="font-size: 11px; color: #6c757d; margin-bottom: 8px;"><strong>🔧 Bioinformatics Support:</strong> Dedicate 4 hours/week with bioinformatics core for phylogenomics (frees up 8 hrs of your time)</p>
-                <p style="font-size: 11px; color: #6c757d; margin-bottom: 8px;"><strong>👥 Co-Author Collaboration:</strong> Engage Dr. Osei-Wusu for MS 1 final revisions (shared 4 hrs vs your 8 hrs)</p>
-                <p style="font-size: 11px; color: #6c757d; margin-bottom: 8px;"><strong>📅 Time Blocking:</strong> Designate specific days (e.g., Mon-Tue: Host Genetics; Wed: Phylogenomics; Thu: Thesis; Fri: Literature/Admin)</p>
-                <p style="font-size: 11px; color: #6c757d;"><strong>🎯 Weekly Review:</strong> Every Friday: 30-min review of progress. Adjust allocations if tasks drift.</p>
-            </div>
         </div>
         
         <!-- BACKUP OBJECTIVES TAB -->
         <div id="backup" class="tab-content">
             <h3 style="margin-bottom: 20px; color: #333; font-weight: 600;">Backup Objectives & Contingency Plans</h3>
             
-            <p style="font-size: 12px; color: #6c757d; margin-bottom: 20px;">🛡️ <em>If primary objectives accelerate ahead of schedule or if certain analyses complete early, here are creative secondary research directions to enrich your thesis and publications.</em></p>
+            <p style="font-size: 12px; color: #6c757d; margin-bottom: 20px;">🛡️ Secondary research directions if timeline accelerates or key insights emerge.</p>
             
             <div class="backup-grid">
                 <div class="backup-card">
                     <h4>🧪 Backup Obj 1: Clinical Outcome Correlations</h4>
-                    <p><strong>Scope:</strong> If phylogenomics completes early (before April), correlate MTBC polymorphisms with patient treatment outcomes and drug resistance profiles.</p>
-                    <p style="margin-top: 10px; color: #667eea; font-weight: 600;">Benefit:</strong> Adds translational impact, increases publication opportunities in clinical journals.</p>
+                    <p><strong>Trigger:</strong> If phylogenomics completes before April.<br><strong>Scope:</strong> Correlate MTBC polymorphisms with treatment outcomes and drug resistance.<br><strong>Benefit:</strong> Translational impact. Clinical journal publications.</p>
                 </div>
                 
                 <div class="backup-card">
-                    <h4>🔍 Backup Obj 2: Epitope Mapping & Immunogenicity</h4>
-                    <p><strong>Scope:</strong> If Host Genetics MS 1 finishes ahead, use GWAS hits to predict novel MTBC epitopes that interact with HLA variants identified in your study.</p>
-                    <p style="margin-top: 10px; color: #667eea; font-weight: 600;">Benefit:</strong> Bridges genomics to immunology. Vaccine development angle. High-impact interdisciplinary publications.</p>
+                    <h4>🔍 Backup Obj 2: Epitope Mapping</h4>
+                    <p><strong>Trigger:</strong> If Host Genetics MS 1 finishes ahead.<br><strong>Scope:</strong> Predict novel MTBC epitopes using GWAS hits + HLA variants.<br><strong>Benefit:</strong> Vaccine development angle. Immunology perspective.</p>
                 </div>
                 
                 <div class="backup-card">
-                    <h4>🌐 Backup Obj 3: Population-Specific Risk Stratification</h4>
-                    <p><strong>Scope:</strong> Develop a genetic risk score for TB susceptibility using your Host Genetics findings. Validate across African populations.</p>
-                    <p style="margin-top: 10px; color: #667eea; font-weight: 600;">Benefit:</strong> Public health relevance. Precision medicine angle. Collaboration with population health researchers.</p>
+                    <h4>🌐 Backup Obj 3: Risk Score Development</h4>
+                    <p><strong>Trigger:</strong> High-impact publication opportunity.<br><strong>Scope:</strong> Genetic risk score for TB susceptibility validation across populations.<br><strong>Benefit:</strong> Public health relevance. Precision medicine angle.</p>
                 </div>
                 
                 <div class="backup-card">
-                    <h4>📊 Backup Obj 4: Multi-Omics Integration</h4>
-                    <p><strong>Scope:</strong> If timeline permits, integrate genomics data with existing proteomics/transcriptomics datasets on MTBC.</p>
-                    <p style="margin-top: 10px; color: #667eea; font-weight: 600;">Benefit:</strong> Comprehensive systems biology perspective. Network analysis. Highly cited review potential.</p>
+                    <h4>📊 Backup Obj 4: Systems Biology Integration</h4>
+                    <p><strong>Trigger:</strong> If timeline and data permits.<br><strong>Scope:</strong> Multi-omics integration of genomics with proteomics/transcriptomics.<br><strong>Benefit:</strong> Comprehensive systems perspective. Highly cited potential.</p>
                 </div>
                 
                 <div class="backup-card">
-                    <h4>💻 Backup Obj 5: Open-Source Database/Tool Development</h4>
-                    <p><strong>Scope:</strong> Create interactive web portal for MTBC polymorphism database or TB susceptibility gene visualization tool.</p>
-                    <p style="margin-top: 10px; color: #667eea; font-weight: 600;">Benefit:</strong> Software engineering angle. Community resource. Long-term research impact beyond thesis.</p>
+                    <h4>💻 Backup Obj 5: Database/Tool Development</h4>
+                    <p><strong>Trigger:</strong> Community interest or collaboration opportunity.<br><strong>Scope:</strong> Interactive web portal for MTBC polymorphism database.<br><strong>Benefit:</strong> Long-term research impact. Community resource.</p>
                 </div>
                 
                 <div class="backup-card">
-                    <h4>🧬 Backup Obj 6: Machine Learning Prediction Model</h4>
-                    <p><strong>Scope:</strong> Build ML model to predict TB progression risk using combined MTBC genotype + Host genetics + clinical data.</p>
-                    <p style="margin-top: 10px; color: #667eea; font-weight: 600;">Benefit:</strong> AI/ML relevance. Predictive medicine. Highly publishable in bioinformatics venues.</p>
+                    <h4>🧬 Backup Obj 6: ML Prediction Model</h4>
+                    <p><strong>Trigger:</strong> Data completeness and timeline permits.<br><strong>Scope:</strong> ML model for TB progression risk prediction.<br><strong>Benefit:</strong> AI/ML relevance. Predictive medicine. Bioinformatics venue publication.</p>
                 </div>
             </div>
-            
-            <div style="margin-top: 30px; padding: 18px; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #43e97b;">
-                <h4 style="color: #43e97b; margin-bottom: 10px;">🚀 How to Decide on Backup Objectives</h4>
-                <p style="font-size: 11px; color: #6c757d; margin-bottom: 8px;"><strong>Trigger 1 - Early Completion:</strong> If any primary objective finishes >2 weeks ahead of schedule, propose backup to supervisor.</p>
-                <p style="font-size: 11px; color: #6c757d; margin-bottom: 8px;"><strong>Trigger 2 - Data-Driven Insights:</strong> If unexpected findings emerge (e.g., unusual polymorphism patterns), explore with secondary analysis.</p>
-                <p style="font-size: 11px; color: #6c757d; margin-bottom: 8px;"><strong>Trigger 3 - Collaboration Opportunity:</strong> If external lab offers data/resource, consider backup work leveraging new partnership.</p>
-                <p style="font-size: 11px; color: #6c757d;"><strong>Trigger 4 - Publication Strategy:</strong> Select backup aligning with high-impact journals that rejected primary manuscript.</p>
-            </div>
-        </div>
-        
-        <!-- MONTHLY REPORTS TAB -->
-        <div id="monthly" class="tab-content">
-            <h3 style="margin-bottom: 20px; color: #333; font-weight: 600;">Monthly Progress Report Template & Schedule</h3>
-            
-            <p style="font-size: 12px; color: #6c757d; margin-bottom: 20px;">📋 Submit monthly report on last working day of each month. Use template below for consistency.</p>
-            
-            <div class="monthly-report-template">
-                <h4>📄 Monthly Progress Report Template (Copy & Customize)</h4>
-                
-                <div class="report-section">
-                    <label>Month & Year</label>
-                    <div class="report-content" contenteditable="true">
-                        Example: February 2026
-                    </div>
-                </div>
-                
-                <div class="report-section">
-                    <label>Overall Progress Summary (2-3 sentences)</label>
-                    <div class="report-content" contenteditable="true">
-                        Briefly summarize overall progress. Highlight major achievements and current blockers.
-                    </div>
-                </div>
-                
-                <div class="report-section">
-                    <label>Objective 1 Progress: Molecular Characterization</label>
-                    <div class="report-content" contenteditable="true">
-                        • Status: [% complete]
-                        • Achievements this month:
-                        • Challenges/blockers:
-                        • Next steps:
-                    </div>
-                </div>
-                
-                <div class="report-section">
-                    <label>Objective 2 Progress: Bacterial Polymorphisms</label>
-                    <div class="report-content" contenteditable="true">
-                        • Status: [% complete]
-                        • Achievements this month:
-                        • Challenges/blockers:
-                        • Next steps:
-                    </div>
-                </div>
-                
-                <div class="report-section">
-                    <label>Objective 3 Progress: Host Genomic Variations</label>
-                    <div class="report-content" contenteditable="true">
-                        • Status: [% complete]
-                        • Achievements this month:
-                        • Challenges/blockers:
-                        • Next steps:
-                    </div>
-                </div>
-                
-                <div class="report-section">
-                    <label>Supporting Tasks (Thesis Writing, Literature Review)</label>
-                    <div class="report-content" contenteditable="true">
-                        • Thesis chapters drafted/revised:
-                        • Literature updates:
-                        • Admin/presentation tasks:
-                    </div>
-                </div>
-                
-                <div class="report-section">
-                    <label>Key Milestones Reached This Month</label>
-                    <div class="report-content" contenteditable="true">
-                        ✅ [List specific accomplishments]
-                    </div>
-                </div>
-                
-                <div class="report-section">
-                    <label>Challenges & Risk Updates</label>
-                    <div class="report-content" contenteditable="true">
-                        • Current blockers:
-                        • Risk level changes:
-                        • Mitigation actions taken:
-                    </div>
-                </div>
-                
-                <div class="report-section">
-                    <label>Resource & Time Allocation Reflection</label>
-                    <div class="report-content" contenteditable="true">
-                        Actual hours spent vs. planned. Any reallocation needed for next month?
-                    </div>
-                </div>
-                
-                <div class="report-section">
-                    <label>Publications & Dissemination (Manuscripts, Presentations)</label>
-                    <div class="report-content" contenteditable="true">
-                        • Manuscripts submitted:
-                        • Reviews received:
-                        • Conferences/seminars:
-                    </div>
-                </div>
-                
-                <div class="report-section">
-                    <label>Questions for Supervisor</label>
-                    <div class="report-content" contenteditable="true">
-                        [List 2-3 key questions or decisions needed]
-                    </div>
-                </div>
-                
-                <div class="report-section">
-                    <label>Goals for Next Month</label>
-                    <div class="report-content" contenteditable="true">
-                        • [Specific, measurable goal 1]
-                        • [Specific, measurable goal 2]
-                        • [Specific, measurable goal 3]
-                    </div>
-                </div>
-            </div>
-            
-            <h3 style="margin-top: 40px; margin-bottom: 20px; color: #333; font-weight: 600;">Monthly Submission Schedule</h3>
-            
-            <table class="resource-table">
-                <thead>
-                    <tr>
-                        <th>Month</th>
-                        <th>Report Due</th>
-                        <th>Key Focus Areas</th>
-                        <th>Expected Deliverables</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Feb 2026</strong></td>
-                        <td>Feb 28</td>
-                        <td>Host Genetics MS 2 acceleration, Phylogenomics start</td>
-                        <td>MS 2 data analysis 80%, MS 1 submitted</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Mar 2026</strong></td>
-                        <td>Mar 31</td>
-                        <td>MS 2 finalization, Chapter 1 draft, Lit review update</td>
-                        <td>MS 2 complete, Chapter 1 draft, Lit review 60%</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Apr 2026</strong></td>
-                        <td>Apr 30</td>
-                        <td>Phylogenomics manuscript prep, Chapters 2-3 writing, MS 1 revisions</td>
-                        <td>Phylogenomics MS outline, Chapters 2-3 drafted</td>
-                    </tr>
-                    <tr>
-                        <td><strong>May 2026</strong></td>
-                        <td>May 31</td>
-                        <td>Phylogenomics submission, Thesis integration, MS revisions</td>
-                        <td>Phylogenomics submitted, Chapters 1-3 complete</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Jun 2026</strong></td>
-                        <td>Jun 30</td>
-                        <td>Chapter 4 (Discussion), Full thesis review, Publication strategy</td>
-                        <td>Full thesis draft (90%), Discussion complete</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Jul 2026</strong></td>
-                        <td>Jul 31</td>
-                        <td>Final revisions, Formatting, Supervisor review prep</td>
-                        <td>Thesis 95% ready, Final proofs</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Aug 2026</strong></td>
-                        <td>Aug 31</td>
-                        <td>Thesis submission, Viva prep, Post-submission tasks</td>
-                        <td>Thesis submitted (Sep 1), Viva prep begun</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
     
     <script>
+        // ===== TAB SWITCHING =====
         function switchTab(tabName) {
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
@@ -1350,6 +1091,7 @@
             event.target.classList.add('active');
         }
         
+        // ===== GANTT CHART WEEK HEADERS =====
         function generateWeekHeaders() {
             const header = document.getElementById('weekHeader');
             for (let i = 1; i <= 48; i++) {
@@ -1365,7 +1107,50 @@
             }
         }
         
+        // ===== CALCULATE DAYS ELAPSED =====
+        function calculateDaysElapsed() {
+            const startDate = new Date('2026-01-01');
+            const today = new Date();
+            const diffTime = Math.abs(today - startDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays === 1) {
+                return '1 day';
+            } else {
+                return diffDays + ' days';
+            }
+        }
+        
+        // ===== FORMAT LAST ACCESSED TIMESTAMP =====
+        function updateLastAccessed() {
+            const now = new Date();
+            const options = { 
+                weekday: 'short', 
+                month: 'short', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            };
+            const formatted = now.toLocaleDateString('en-US', options);
+            return formatted;
+        }
+        
+        // ===== INITIALIZE ALL TIMESTAMPS =====
+        function initializeTimestamps() {
+            // Update Days Elapsed
+            const daysElapsed = calculateDaysElapsed();
+            const daysElement = document.getElementById('daysElapsed');
+            if (daysElement) daysElement.textContent = daysElapsed;
+            
+            // Update Last Accessed
+            const accessElement = document.getElementById('lastAccessed');
+            if (accessElement) accessElement.textContent = updateLastAccessed();
+        }
+        
+        // ===== INITIALIZE ON PAGE LOAD =====
         generateWeekHeaders();
+        initializeTimestamps();
     </script>
 </body>
 </html>
